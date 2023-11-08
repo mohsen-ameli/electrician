@@ -8,7 +8,7 @@ export default function Navbar() {
     <nav className="flex items-center justify-between py-4 bg-yellow-400 px-40">
       <div className="text-lg hover:scale-95 transition-all">
         <Link href="/" className="text-black">
-          Hassan Electric
+          Power Source Electric
         </Link>
       </div>
 

@@ -1,3 +1,4 @@
+import Header from "@/components/header"
 import Image from "next/image"
 import React from "react"
 
@@ -6,9 +7,11 @@ export default function Gallery() {
 
   return (
     <div className="container px-20 p-8 mx-auto">
-      <h1 className="text-center capitalize text-4xl font-bold border-b-2 border-yellow-400 pb-4">
-        Our work's gallery
-      </h1>
+      <Header
+        title="Our work's gallery"
+        description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo est
+          alias vel, id iusto, molestiae ab ex necessitatibus"
+      />
 
       <div className="flex flex-wrap gap-4 mt-8">
         {images.map(image => (
