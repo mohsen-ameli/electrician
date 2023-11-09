@@ -5,7 +5,7 @@ import Link from "next/link"
 
 export default function Navbar() {
   return (
-    <nav className="flex items-center justify-between py-4 bg-yellow-400 px-40">
+    <nav className="flex items-center justify-between py-4 dark:bg-yellow-600 bg-yellow-400 px-40">
       <div className="text-lg hover:scale-95 transition-all">
         <Link href="/" className="text-black">
           Power Source Electric
@@ -43,6 +43,14 @@ export default function Navbar() {
             className="text-base text-black font-normal hover:scale-95 transition-all"
           >
             Contact Us
+          </Button>
+        </Link>
+        <Link href="/blog">
+          <Button
+            variant="ghost"
+            className="text-base text-black font-normal hover:scale-95 transition-all"
+          >
+            Blog
           </Button>
         </Link>
         <ModeToggle />

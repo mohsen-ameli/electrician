@@ -2,15 +2,26 @@
 
 import { Button } from "@/components/ui/button"
 import { Check } from "lucide-react"
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useFormStatus } from "react-dom"
 
-export default function SendButton() {
+export default function SendButton({
+  actionText,
+  pendingText,
+  doneText,
+}: {
+  actionText: string
+  pendingText: string
+  doneText: string
+}) {
   const { pending } = useFormStatus()
   const count = useRef(0)
 
   useEffect(() => {
     count.current++
+    setTimeout(() => {
+      count.current = 0
+    }, 5000)
   }, [pending])
 
   return (
@@ -21,12 +32,12 @@ export default function SendButton() {
       disabled={count.current !== 0 || pending}
     >
       {pending ? (
-        "Sending..."
+        pendingText
       ) : count.current === 0 ? (
-        "Send"
+        actionText
       ) : (
         <div className="flex items-center gap-x-2 text-green-400">
-          <Check /> Sent!
+          <Check /> {doneText}
         </div>
       )}
     </Button>

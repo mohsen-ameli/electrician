@@ -3,7 +3,7 @@ import { Clock7, Instagram, Mail, Map, Phone } from "lucide-react"
 import Link from "next/link"
 import React from "react"
 import { Resend } from "resend"
-import SendButton from "./send-button"
+import SendButton from "../../components/send-button"
 import Header from "@/components/header"
 
 export default async function ContactUs() {
@@ -98,7 +98,11 @@ export default async function ContactUs() {
             />
           </div>
 
-          <SendButton />
+          <SendButton
+            actionText="Send"
+            pendingText="Sending..."
+            doneText="Sent"
+          />
         </form>
 
         <div className="bg-yellow-200 opacity-70 rounded-xl p-8 text-black text-center">
