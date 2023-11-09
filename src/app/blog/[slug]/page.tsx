@@ -6,6 +6,13 @@ import ShareButton from "../share"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 
+export async function generateStaticParams() {
+  const blogs = await db.query.blogs.findMany()
+  return blogs.map(blog => ({
+    slug: blog.slug,
+  }))
+}
+
 export default async function page({
   params: { slug },
 }: {
