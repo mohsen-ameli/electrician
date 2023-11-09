@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "sqlite",
-  "id": "74fb4620-66d8-468f-a04e-01b3ce3557be",
+  "id": "6c8ee887-5bbb-4be6-bc1a-6fc431960423",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "blogs": {
@@ -27,7 +27,7 @@
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false,
-          "default": 1699488051320
+          "default": 1699495839411
         },
         "name": {
           "name": "name",
