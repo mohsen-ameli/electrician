@@ -1,6 +1,12 @@
 import Header from "@/components/header"
+import { Metadata } from "next"
 import Image from "next/image"
 import React from "react"
+
+export const metadata: Metadata = {
+  title: "Echo Power Electric | About Us",
+  description: "Learn more about our company.",
+}
 
 export default function AboutUs() {
   return (

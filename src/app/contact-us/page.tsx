@@ -5,6 +5,12 @@ import React from "react"
 import { Resend } from "resend"
 import SendButton from "../../components/send-button"
 import Header from "@/components/header"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Echo Power Electric | Contact Us",
+  description: "Contact us today and get a free quote.",
+}
 
 export default async function ContactUs() {
   async function handleSubmit(form: FormData) {
@@ -18,9 +24,9 @@ export default async function ContactUs() {
     try {
       const resend = new Resend(process.env.RESEND_API_KEY)
 
-      const { data } = await resend.emails.send({
+      await resend.emails.send({
         from: "onboarding@resend.dev",
-        to: "mohsen.ameli83@gmail.com",
+        to: process.env.RESEND_EMAIL!,
         subject: "New Contact " + name,
         react: EmailTemplate({
           name,
@@ -29,8 +35,6 @@ export default async function ContactUs() {
           message,
         }) as React.ReactElement,
       })
-
-      console.log(data)
     } catch (error) {
       console.log({ error })
     }

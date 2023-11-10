@@ -1,6 +1,12 @@
 import Header from "@/components/header"
+import { Metadata } from "next"
 import Image from "next/image"
 import React from "react"
+
+export const metadata: Metadata = {
+  title: "Echo Power Electric | Gallery",
+  description: "View our work's gallery.",
+}
 
 export default function Gallery() {
   const images = [0, 1, 2, 3, 4]
