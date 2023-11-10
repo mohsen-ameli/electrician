@@ -7,7 +7,6 @@
 .yarn/install-state.gz
 sqlite.db
 .env
-/drizzle
 bun.lockb
 
 # testing
