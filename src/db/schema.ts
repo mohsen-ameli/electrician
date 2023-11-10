@@ -1,9 +1,8 @@
-import { sqliteTable, integer, text } from "drizzle-orm/sqlite-core"
+import { bigint, pgTable, text, varchar } from "drizzle-orm/pg-core"
 
-export const blogs = sqliteTable("blogs", {
-  id: integer("id").notNull().primaryKey(),
-  slug: text("slug").notNull().unique(),
-  date: integer("date").notNull().default(Date.now()),
+export const blogs = pgTable("blogs", {
+  slug: varchar("slug", { length: 256 }).notNull().unique().primaryKey(),
+  date: bigint("date", { mode: "number" }).notNull(),
   title: text("name").notNull().unique(),
   content: text("content").notNull(),
 })

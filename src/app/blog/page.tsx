@@ -17,7 +17,8 @@ export default async function Blog() {
     const title = e.get("title") as string
     const content = e.get("content") as string
     const slug = title.toLowerCase().replace(/\s/g, "-")
-    db.insert(blogs).values({ slug, title, content }).run()
+    const date = Date.now()
+    await db.insert(blogs).values({ slug, title, content, date })
     revalidatePath("/blog")
   }
 
@@ -62,7 +63,7 @@ export default async function Blog() {
         {allBlogs.map(blog => (
           <div
             className="dark:bg-slate-700 bg-slate-300 p-8 rounded-xl space-y-4"
-            key={blog.id}
+            key={blog.slug}
           >
             <h1 className="text-4xl font-semibold">{blog.title}</h1>
             <p>

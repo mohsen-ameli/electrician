@@ -1,71 +1,61 @@
 {
   "version": "5",
-  "dialect": "sqlite",
-  "id": "6c8ee887-5bbb-4be6-bc1a-6fc431960423",
+  "dialect": "pg",
+  "id": "35057204-c4ef-4843-8b27-3916134ecfaa",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "blogs": {
       "name": "blogs",
+      "schema": "",
       "columns": {
-        "id": {
-          "name": "id",
-          "type": "integer",
-          "primaryKey": true,
-          "notNull": true,
-          "autoincrement": false
-        },
         "slug": {
           "name": "slug",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
+          "type": "varchar(256)",
+          "primaryKey": true,
+          "notNull": true
         },
         "date": {
           "name": "date",
-          "type": "integer",
+          "type": "bigint",
           "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false,
-          "default": 1699495839411
+          "notNull": true
         },
         "name": {
           "name": "name",
           "type": "text",
           "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
+          "notNull": true
         },
         "content": {
           "name": "content",
           "type": "text",
           "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
+          "notNull": true
         }
       },
-      "indexes": {
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
         "blogs_slug_unique": {
           "name": "blogs_slug_unique",
+          "nullsNotDistinct": false,
           "columns": [
             "slug"
-          ],
-          "isUnique": true
+          ]
         },
         "blogs_name_unique": {
           "name": "blogs_name_unique",
+          "nullsNotDistinct": false,
           "columns": [
             "name"
-          ],
-          "isUnique": true
+          ]
         }
-      },
-      "foreignKeys": {},
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      }
     }
   },
   "enums": {},
+  "schemas": {},
   "_meta": {
     "schemas": {},
     "tables": {},
