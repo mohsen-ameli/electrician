@@ -21,20 +21,26 @@ export default function Admin() {
     const username = e.currentTarget.username.value
     const password = e.currentTarget.password.value
 
+    console.log("got username and passsssssssssssssss")
+
     const { error: err, jwt } = await login(username, password)
+    console.log(jwt)
     if (err) {
       toast({
         title: "Login Failed!",
         description: err,
       })
     } else {
+      console.log("hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee1")
       const cookies = new Cookies()
+      console.log("hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee2")
       cookies.set("jwt", jwt, {
         path: "/",
         sameSite: "strict",
-        secure: process.env.NODE_ENV === "production",
+        secure: false, //process.env.NODE_ENV === "production",
         maxAge: MAX_AGE,
       })
+      console.log("hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee3")
       router.push("/blog")
     }
 
