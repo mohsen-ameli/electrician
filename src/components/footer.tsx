@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-20">
         <div>
           <h1 className="border-b-2 border-yellow-400 pb-1 mb-4 w-fit uppercase font-semibold">
-            Power Source Electric
+            Echo Power Electric
           </h1>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime
@@ -46,7 +46,7 @@ export default function Footer() {
       </div>
 
       <div className="border-t-2 border-yellow-400 pt-2 mt-8 w-full uppercase">
-        copyright © 2023 Power Source Electric. all rights reserved.
+        copyright © 2023 Echo Power Electric. all rights reserved.
       </div>
     </div>
   )

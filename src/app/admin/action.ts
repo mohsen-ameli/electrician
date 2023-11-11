@@ -35,7 +35,7 @@ export async function login(form: FormData): LoginResponse {
     }
   }
 
-  const token = sign({ username }, process.env.JWT_SECRET_KEY!, {
+  const token = sign({ id: user.id, username }, process.env.JWT_SECRET_KEY!, {
     expiresIn: MAX_AGE,
   })
 

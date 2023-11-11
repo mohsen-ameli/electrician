@@ -2,13 +2,15 @@ import React from "react"
 import { ModeToggle } from "./theme-toggle"
 import { Button } from "./ui/button"
 import Link from "next/link"
+import { authenticate } from "@/lib/authenticate"
+import Authed from "./authed"
 
 export default function Navbar() {
   return (
     <nav className="flex items-center justify-between py-4 dark:bg-yellow-600 bg-yellow-400 px-40">
       <div className="text-lg hover:scale-95 transition-all">
         <Link href="/" className="text-black">
-          Power Source Electric
+          Echo Power Electric
         </Link>
       </div>
 
@@ -53,6 +55,7 @@ export default function Navbar() {
             Blog
           </Button>
         </Link>
+        <Authed />
         <ModeToggle />
       </div>
     </nav>

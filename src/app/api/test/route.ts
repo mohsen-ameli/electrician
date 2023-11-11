@@ -12,6 +12,10 @@ export async function GET() {
   //   "password" varchar(256) NOT NULL,
   //   CONSTRAINT "admin_username_unique" UNIQUE("username")
   // );`)
+  // await db.insert(admin).values({
+  //   username: ".",
+  //   password: await bcrypt.hash(".", 10),
+  // })
 
   const blogs = {}
   return NextResponse.json(blogs)
