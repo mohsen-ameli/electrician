@@ -13,16 +13,13 @@ type LoginResponse = Promise<{
   jwt: string | null
 }>
 
-export async function login(form: FormData): LoginResponse {
-  const username = form.get("username") as string
-  const password = form.get("password") as string
-
+export async function login(username: string, password: string): LoginResponse {
   const user = await db.query.admin.findFirst({
     where: eq(admin.username, username),
   })
   if (!user) {
     return {
-      error: "User not found",
+      error: "Either username or password is incorrect",
       jwt: null,
     }
   }
@@ -30,7 +27,7 @@ export async function login(form: FormData): LoginResponse {
   const valid = await compare(password, user.password)
   if (!valid) {
     return {
-      error: "Invalid password",
+      error: "Either username or password is incorrect",
       jwt: null,
     }
   }

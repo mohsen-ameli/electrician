@@ -1,19 +1,32 @@
 "use client"
 
+import { useToast } from "@/components/ui/use-toast"
 import { login } from "./action"
 import { Button } from "@/components/ui/button"
 import { useRouter } from "next/navigation"
+import { useState } from "react"
 import Cookies from "universal-cookie"
 
 const MAX_AGE = 60 * 60 * 24 * 1
 
 export default function Admin() {
   const router = useRouter()
+  const [loading, setLoading] = useState(false)
+  const { toast } = useToast()
 
-  async function handleForm(form: FormData) {
-    const { error, jwt } = await login(form)
-    if (error) {
-      alert(error)
+  async function handleForm(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    setLoading(true)
+
+    const username = e.currentTarget.username.value
+    const password = e.currentTarget.password.value
+
+    const { error: err, jwt } = await login(username, password)
+    if (err) {
+      toast({
+        title: "Login Failed!",
+        description: err,
+      })
     } else {
       const cookies = new Cookies()
       cookies.set("jwt", jwt, {
@@ -24,6 +37,10 @@ export default function Admin() {
       })
       router.push("/blog")
     }
+
+    setTimeout(() => {
+      setLoading(false)
+    }, 2000)
   }
 
   return (
@@ -34,7 +51,10 @@ export default function Admin() {
         Otherwise...
       </h1>
 
-      <form action={handleForm} className="px-32 flex flex-col space-y-6 py-8">
+      <form
+        onSubmit={handleForm}
+        className="px-32 flex flex-col space-y-6 py-8"
+      >
         <div className="flex flex-col gap-1">
           <label htmlFor="username">
             Username <span className="text-red-500">*</span>
@@ -61,7 +81,15 @@ export default function Admin() {
           />
         </div>
 
-        <Button type="submit">Login</Button>
+        {loading ? (
+          <Button disabled variant="hover">
+            Logging in...
+          </Button>
+        ) : (
+          <Button type="submit" variant="hover">
+            Login
+          </Button>
+        )}
       </form>
     </div>
   )

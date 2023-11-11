@@ -28,7 +28,7 @@ export default async function page({
 
   return (
     <div className="container mt-8 py-8 px-32">
-      <div className="bg-slate-100 dark:bg-slate-800 p-12 rounded-xl">
+      <div className="dark:bg-slate-700 bg-slate-300 p-12 rounded-xl">
         <h1 className="text-5xl font-semibold flex justify-between items-center">
           {blog.title} <ShareButton title={blog.title} />
         </h1>
