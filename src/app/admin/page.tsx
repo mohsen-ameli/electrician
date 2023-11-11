@@ -1,7 +1,6 @@
 "use client"
 
 import { useToast } from "@/components/ui/use-toast"
-import { login } from "./action"
 import { Button } from "@/components/ui/button"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
@@ -23,7 +22,12 @@ export default function Admin() {
 
     console.log("got username and passsssssssssssssss")
 
-    const { error: err, jwt } = await login(username, password)
+    const res = await fetch("/api/auth", {
+      method: "POST",
+      body: JSON.stringify({ username, password }),
+    })
+    const { error: err, jwt }: { error: string | null; jwt: string } =
+      await res.json()
     console.log(jwt)
     if (err) {
       toast({
