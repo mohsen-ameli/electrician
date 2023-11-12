@@ -1,10 +1,10 @@
-import { authenticate } from "@/lib/authenticate"
 import { NextResponse } from "next/server"
 import { db } from "@/db/drizzle-db"
 import { admin } from "@/db/schema"
-import { compare } from "bcrypt"
+import { compare } from "bcryptjs"
 import { eq } from "drizzle-orm"
 import { sign } from "jsonwebtoken"
+import { authenticate } from "@/lib/authenticate"
 
 export async function GET() {
   return NextResponse.json(await authenticate())

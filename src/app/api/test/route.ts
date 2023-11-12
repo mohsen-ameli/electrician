@@ -2,7 +2,6 @@ import { db } from "@/db/drizzle-db"
 import { admin } from "@/db/schema"
 import { sql } from "drizzle-orm"
 import { NextResponse } from "next/server"
-import bcrypt from "bcrypt"
 
 export async function GET() {
   // const blogs = await db.query.blogs.findMany()

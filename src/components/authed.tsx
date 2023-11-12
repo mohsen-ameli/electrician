@@ -10,7 +10,7 @@ export default function Authed() {
   const path = usePathname()
 
   async function getAuth() {
-    const res = await fetch("/api/auth")
+    const res = await fetch(process.env.NEXT_PUBLIC_HOST + "/api/auth")
     const data: boolean = await res.json()
     setAuthed(data)
   }

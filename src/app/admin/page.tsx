@@ -22,7 +22,7 @@ export default function Admin() {
 
     console.log("got username and passsssssssssssssss")
 
-    const res = await fetch("/api/auth", {
+    const res = await fetch(process.env.NEXT_PUBLIC_HOST + "/api/auth", {
       method: "POST",
       body: JSON.stringify({ username, password }),
     })

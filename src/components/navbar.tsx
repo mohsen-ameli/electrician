@@ -2,7 +2,6 @@ import React from "react"
 import { ModeToggle } from "./theme-toggle"
 import { Button } from "./ui/button"
 import Link from "next/link"
-import { authenticate } from "@/lib/authenticate"
 import Authed from "./authed"
 
 export default function Navbar() {
