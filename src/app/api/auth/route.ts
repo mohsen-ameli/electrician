@@ -4,10 +4,18 @@ import { admin } from "@/db/schema"
 import { compare } from "bcryptjs"
 import { eq } from "drizzle-orm"
 import { sign } from "jsonwebtoken"
-import { authenticate } from "@/lib/authenticate"
+import { cookies } from "next/headers"
 
 export async function GET() {
-  return NextResponse.json(await authenticate())
+  try {
+    const cookieStore = cookies()
+    const token = cookieStore.get("jwt")
+    if (!token) return NextResponse.json(false)
+
+    return NextResponse.json(true)
+  } catch (error) {
+    return NextResponse.json(false)
+  }
 }
 
 export async function POST(req: Request) {

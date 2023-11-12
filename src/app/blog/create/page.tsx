@@ -5,8 +5,8 @@ import { authenticate } from "@/lib/authenticate"
 import { redirect } from "next/navigation"
 
 export default async function CreateBlog() {
-  const authenticated = await authenticate()
-  if (!authenticated) redirect("/blog")
+  // const authenticated = await authenticate()
+  // if (!authenticated) redirect("/blog")
 
   async function addBlog(e: FormData) {
     "use server"
