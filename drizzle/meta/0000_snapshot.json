@@ -1,9 +1,45 @@
 {
   "version": "5",
   "dialect": "pg",
-  "id": "35057204-c4ef-4843-8b27-3916134ecfaa",
+  "id": "decdf449-8eb7-49a7-8cd5-4b38fba65558",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
+    "admin": {
+      "name": "admin",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "username": {
+          "name": "username",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "password": {
+          "name": "password",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "admin_username_unique": {
+          "name": "admin_username_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "username"
+          ]
+        }
+      }
+    },
     "blogs": {
       "name": "blogs",
       "schema": "",

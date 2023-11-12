@@ -5,15 +5,8 @@
     {
       "idx": 0,
       "version": "5",
-      "when": 1699595857987,
-      "tag": "0000_overjoyed_quasar",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "5",
-      "when": 1699598437063,
-      "tag": "0001_striped_iron_fist",
+      "when": 1699763351980,
+      "tag": "0000_cheerful_gauntlet",
       "breakpoints": true
     }
   ]
