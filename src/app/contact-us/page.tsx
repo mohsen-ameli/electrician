@@ -35,9 +35,7 @@ export default async function ContactUs() {
           message,
         }) as React.ReactElement,
       })
-    } catch (error) {
-      console.log({ error })
-    }
+    } catch (error) {}
   }
 
   return (

@@ -20,31 +20,25 @@ export default function Admin() {
     const username = e.currentTarget.username.value
     const password = e.currentTarget.password.value
 
-    console.log("got username and passsssssssssssssss")
-
-    const res = await fetch(process.env.NEXT_PUBLIC_HOST + "/api/auth", {
+    const res = await fetch(process.env.NEXT_PUBLIC_HOST + "/api/login", {
       method: "POST",
       body: JSON.stringify({ username, password }),
     })
     const { error: err, jwt }: { error: string | null; jwt: string } =
       await res.json()
-    console.log(jwt)
     if (err) {
       toast({
         title: "Login Failed!",
         description: err,
       })
     } else {
-      console.log("hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee1")
       const cookies = new Cookies()
-      console.log("hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee2")
       cookies.set("jwt", jwt, {
         path: "/",
         sameSite: "strict",
         secure: false, //process.env.NODE_ENV === "production",
         maxAge: MAX_AGE,
       })
-      console.log("hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee3")
       router.push("/blog")
     }
 

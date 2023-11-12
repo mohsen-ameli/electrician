@@ -5,14 +5,14 @@ import { authenticate } from "@/lib/authenticate"
 import { redirect } from "next/navigation"
 
 export default async function CreateBlog() {
-  // const authenticated = await authenticate()
-  // if (!authenticated) redirect("/blog")
+  const authenticated = await authenticate()
+  if (!authenticated) redirect("/blog")
 
-  async function addBlog(e: FormData) {
+  async function addBlog(form: FormData) {
     "use server"
 
-    const title = e.get("title") as string
-    const content = e.get("content") as string
+    const title = form.get("title") as string
+    const content = form.get("content") as string
     const slug = title.toLowerCase().replace(/\s/g, "-")
     const date = Date.now()
     await db.insert(blogs).values({ slug, title, content, date })
