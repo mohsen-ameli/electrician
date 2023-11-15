@@ -12,3 +12,9 @@ export const admin = pgTable("admin", {
   username: varchar("username", { length: 256 }).notNull().unique(),
   password: varchar("password", { length: 256 }).notNull(),
 })
+
+export const users = pgTable("users", {
+  id: serial("id").notNull().primaryKey(),
+  username: varchar("username", { length: 256 }).notNull().unique(),
+  password: varchar("password", { length: 256 }).notNull(),
+})
