@@ -7,7 +7,6 @@
 .yarn/install-state.gz
 sqlite.db
 .env
-bun.lockb
 
 # testing
 /coverage

@@ -36,7 +36,7 @@ export default function Admin() {
       cookies.set("jwt", jwt, {
         path: "/",
         sameSite: "strict",
-        secure: false, //process.env.NODE_ENV === "production",
+        secure: process.env.NODE_ENV === "production",
         maxAge: MAX_AGE,
       })
       router.push("/blog")
