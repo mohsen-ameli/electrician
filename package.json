@@ -5,10 +5,11 @@
   "scripts": {
     "dev": "next dev",
     "devT": "next dev --turbo",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
-    "migrate": "prisma generate && prisma db push",
+    "generate": "prisma generate",
+    "push": "prisma db push",
     "studio": "prisma studio",
     "prettier": "prettier --write \"./**/*.{js,jsx,ts,tsx,json}\""
   },
