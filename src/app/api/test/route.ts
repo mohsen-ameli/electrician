@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server"
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url)
   const username = searchParams.get("username") as string
-  const user = await db.query.admin.findFirst({
+  const user = await db.query.admin.findMany({
     where: (admin, { eq }) => eq(admin.username, username),
   })
 
