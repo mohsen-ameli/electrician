@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server"
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url)
-  const username = searchParams.get("username") as string
+  const username = searchParams.get("username")
   try {
     const users = await db.query.admin.findMany()
     if (users) {

@@ -29,13 +29,8 @@ export default function Admin() {
     const MAX_AGE = 60 * 60 * 24 * 1 // 1 day
 
     try {
-      // @ts-ignore
-      user = await db.execute(
-        sql`SELECT * FROM admin WHERE username = ${username}`
-      )[0]
-      // user = await db.query.admin.findFirst({
-      //   where: eq(admin.username, username),
-      // })
+      const admins = await db.query.admin.findMany()
+      user = admins.filter(admin => admin.username === username)[0]
     } catch (error) {
       console.log("QUERRRRYY FAILEDDDDDDDDDDDDDDDd ", error)
     }

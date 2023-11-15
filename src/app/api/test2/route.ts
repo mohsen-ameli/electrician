@@ -9,7 +9,8 @@ export async function GET(req: NextRequest) {
   //   where: eq(admin.username, username),
   // })
   const admins = await db.query.admin.findMany()
+  const user = admins.filter(admin => admin.username === "admin")[0]
 
   // return NextResponse.json(user)
-  return NextResponse.json({ admins, len: admins.length })
+  return NextResponse.json(user)
 }
