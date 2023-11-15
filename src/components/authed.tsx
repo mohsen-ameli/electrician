@@ -25,7 +25,7 @@ export default function Authed() {
     <Link href="/blog/create">
       <Button
         variant="ghost"
-        className="text-base text-black font-normal hover:scale-95 transition-all"
+        className="text-base font-normal text-black transition-all hover:scale-95"
       >
         Create Blog
       </Button>

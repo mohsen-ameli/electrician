@@ -20,7 +20,7 @@ export default function Admin() {
     const username = e.currentTarget.username.value
     const password = e.currentTarget.password.value
 
-    const res = await fetch(process.env.NEXT_PUBLIC_HOST + "/api/login", {
+    const res = await fetch("/api/login", {
       method: "POST",
       body: JSON.stringify({ username, password }),
     })
@@ -48,7 +48,7 @@ export default function Admin() {
   }
 
   return (
-    <div className="p-8 container">
+    <div className="container p-8">
       <h1 className="text-center text-2xl">
         If you are here, then it can only mean two things. You are the admin, or
         you are "trying" to become the admin. I hope you are the right person...
@@ -57,7 +57,7 @@ export default function Admin() {
 
       <form
         onSubmit={handleForm}
-        className="px-32 flex flex-col space-y-6 py-8"
+        className="flex flex-col space-y-6 px-32 py-8"
       >
         <div className="flex flex-col gap-1">
           <label htmlFor="username">
@@ -68,7 +68,7 @@ export default function Admin() {
             type="text"
             name="username"
             id="username"
-            className="border-2 border-black rounded-md p-2"
+            className="rounded-md border-2 border-black p-2"
           />
         </div>
 
@@ -81,7 +81,7 @@ export default function Admin() {
             type="password"
             name="password"
             id="password"
-            className="border-2 border-black rounded-md p-2"
+            className="rounded-md border-2 border-black p-2"
           />
         </div>
 

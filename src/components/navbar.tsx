@@ -6,18 +6,18 @@ import Authed from "./authed"
 
 export default function Navbar() {
   return (
-    <nav className="flex items-center justify-between py-4 dark:bg-yellow-600 bg-yellow-400 px-40">
-      <div className="text-lg hover:scale-95 transition-all">
+    <nav className="flex items-center justify-between bg-yellow-400 px-40 py-4 dark:bg-yellow-600">
+      <div className="text-lg transition-all hover:scale-95">
         <Link href="/" className="text-black">
           Echo Power Electric
         </Link>
       </div>
 
-      <div className="flex gap-8 items-center">
+      <div className="flex items-center gap-8">
         <Link href="/">
           <Button
             variant="ghost"
-            className="text-base text-black font-normal hover:scale-95 transition-all"
+            className="text-base font-normal text-black transition-all hover:scale-95"
           >
             Home
           </Button>
@@ -25,7 +25,7 @@ export default function Navbar() {
         <Link href="/about-us">
           <Button
             variant="ghost"
-            className="text-base text-black font-normal hover:scale-95 transition-all"
+            className="text-base font-normal text-black transition-all hover:scale-95"
           >
             About Us
           </Button>
@@ -33,7 +33,7 @@ export default function Navbar() {
         <Link href="/gallery">
           <Button
             variant="ghost"
-            className="text-base text-black font-normal hover:scale-95 transition-all"
+            className="text-base font-normal text-black transition-all hover:scale-95"
           >
             Gallery
           </Button>
@@ -41,7 +41,7 @@ export default function Navbar() {
         <Link href="/contact-us">
           <Button
             variant="ghost"
-            className="text-base text-black font-normal hover:scale-95 transition-all"
+            className="text-base font-normal text-black transition-all hover:scale-95"
           >
             Contact Us
           </Button>
@@ -49,7 +49,7 @@ export default function Navbar() {
         <Link href="/blog">
           <Button
             variant="ghost"
-            className="text-base text-black font-normal hover:scale-95 transition-all"
+            className="text-base font-normal text-black transition-all hover:scale-95"
           >
             Blog
           </Button>

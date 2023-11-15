@@ -39,7 +39,7 @@ export default async function ContactUs() {
   }
 
   return (
-    <div className="container px-20 p-8 mx-auto">
+    <div className="container mx-auto p-8 px-20">
       <Header
         title="Contact us today!"
         description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo est
@@ -47,7 +47,7 @@ export default async function ContactUs() {
       />
       <div className="grid grid-cols-2 gap-x-32">
         <form action={handleSubmit} className="space-y-6 p-8">
-          <h1 className="text-3xl border-b-2 dark:border-white border-black pb-2 font-bold text-center">
+          <h1 className="border-b-2 border-black pb-2 text-center text-3xl font-bold dark:border-white">
             Get In Touch
           </h1>
           <div className="flex flex-col gap-1">
@@ -59,7 +59,7 @@ export default async function ContactUs() {
               name="name"
               id="name"
               required
-              className="border-2 border-black rounded-md p-2"
+              className="rounded-md border-2 border-black p-2"
             />
           </div>
 
@@ -74,7 +74,7 @@ export default async function ContactUs() {
               required
               title="Please enter a valid email address."
               pattern="^[\w\-\.]+@([\w-]+\.)+[\w-]{2,}$"
-              className="border-2 border-black rounded-md p-2"
+              className="rounded-md border-2 border-black p-2"
             />
           </div>
 
@@ -84,7 +84,7 @@ export default async function ContactUs() {
               type="tel"
               name="tel"
               id="tel"
-              className="border-2 border-black rounded-md p-2"
+              className="rounded-md border-2 border-black p-2"
             />
           </div>
 
@@ -96,7 +96,7 @@ export default async function ContactUs() {
               name="message"
               id="message"
               required
-              className="border-2 border-black rounded-md p-2 resize-y min-h-[8rem]"
+              className="min-h-[8rem] resize-y rounded-md border-2 border-black p-2"
             />
           </div>
 
@@ -107,43 +107,43 @@ export default async function ContactUs() {
           />
         </form>
 
-        <div className="bg-yellow-200 opacity-70 rounded-xl p-8 text-black text-center">
-          <h1 className="text-3xl border-b-2 border-black pb-2 font-bold">
+        <div className="rounded-xl bg-yellow-200 p-8 text-center text-black opacity-70">
+          <h1 className="border-b-2 border-black pb-2 text-3xl font-bold">
             Contact
           </h1>
 
-          <div className="text-xl font-semibold mt-8 flex items-center gap-4">
+          <div className="mt-8 flex items-center gap-4 text-xl font-semibold">
             <Clock7 /> Work Hours: 8:00 AM - 5:00 PM (Mon - Fri)
           </div>
 
           <Link
             href="tel:2345678901"
-            className="text-xl underline hover:text-blue-600 transition-all font-semibold mt-8 flex items-center gap-4"
+            className="mt-8 flex items-center gap-4 text-xl font-semibold underline transition-all hover:text-blue-600"
           >
             <Phone /> (234) 567-8901
           </Link>
 
-          <div className="text-xl font-semibold mt-8 flex items-center gap-4">
+          <div className="mt-8 flex items-center gap-4 text-xl font-semibold">
             <Mail /> email@gmail.com
           </div>
 
           <Link
             href="https://www.instagram.com/hassen.ameli/"
-            className="text-xl underline hover:text-blue-600 transition-all font-semibold mt-8 flex items-center gap-4"
+            className="mt-8 flex items-center gap-4 text-xl font-semibold underline transition-all hover:text-blue-600"
           >
             <Instagram /> Instagram
           </Link>
 
-          <div className="text-xl font-semibold mt-8 flex items-center gap-4">
+          <div className="mt-8 flex items-center gap-4 text-xl font-semibold">
             <Map /> Address: 1 Yonge Street, Toronto, ON M5E 1E5
           </div>
         </div>
       </div>
 
-      <div className="py-20 space-y-8">
+      <div className="space-y-8 py-20">
         {/* <div className="text-center text-3xl">Our Location: 1 yonge street</div> */}
         <iframe
-          className="w-full h-[500px]"
+          className="h-[500px] w-full"
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2887.2518157736185!2d-79.37676112432204!3d43.64292895309578!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d4cb295c1d0cf3%3A0x1f29b0772fc15f3!2s1%20Yonge%20St%2C%20Toronto%2C%20ON%20M5E%201E5%2C%20Canada!5e0!3m2!1sen!2sus!4v1699418366873!5m2!1sen!2sus"
           allowFullScreen={true}
           loading="lazy"

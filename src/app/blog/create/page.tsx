@@ -1,8 +1,7 @@
 import SendButton from "@/components/send-button"
-import { db } from "@/db/drizzle-db"
-import { blogs } from "@/db/schema"
 import { authenticate } from "@/lib/authenticate"
 import { redirect } from "next/navigation"
+import prisma from "@/db/prisma-db"
 
 export default async function CreateBlog() {
   const authenticated = await authenticate()
@@ -14,13 +13,13 @@ export default async function CreateBlog() {
     const title = form.get("title") as string
     const content = form.get("content") as string
     const slug = title.toLowerCase().replace(/\s/g, "-")
-    const date = Date.now()
-    await db.insert(blogs).values({ slug, title, content, date })
+    const createdAt = new Date()
+    await prisma.blogs.create({ data: { slug, title, content, createdAt } })
     redirect("/blog/" + slug)
   }
 
   return (
-    <form action={addBlog} className="space-y-6 p-8 container">
+    <form action={addBlog} className="container space-y-6 p-8">
       <div className="flex flex-col gap-1">
         <label htmlFor="title">
           Title <span className="text-red-500">*</span>
@@ -29,7 +28,7 @@ export default async function CreateBlog() {
           type="text"
           name="title"
           required
-          className="border-2 border-black rounded-md p-2"
+          className="rounded-md border-2 border-black p-2"
         />
       </div>
       <div className="flex flex-col gap-1">
@@ -39,7 +38,7 @@ export default async function CreateBlog() {
         <textarea
           name="content"
           required
-          className="border-2 border-black rounded-md p-2 min-h-[200px]"
+          className="min-h-[200px] rounded-md border-2 border-black p-2"
         />
       </div>
 

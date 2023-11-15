@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server"
-import { db } from "@/db/drizzle-db"
+import prisma from "@/db/prisma-db"
 import { compare } from "bcryptjs"
 import { sign } from "jsonwebtoken"
 
@@ -8,23 +8,21 @@ export async function POST(req: Request) {
 
   const MAX_AGE = 60 * 60 * 24 * 1 // 1 day
 
-  const admins = await db.query.admin.findMany()
-  if (admins.length === 0) {
+  const admin = await prisma.admin.findFirst({
+    where: {
+      username: {
+        equals: username,
+      },
+    },
+  })
+  if (!admin) {
     return NextResponse.json({
       error: "Either username or password is incorrect",
       jwt: null,
     })
   }
-  const users = admins.filter(admin => admin.username === username)
-  if (users.length === 0) {
-    return NextResponse.json({
-      error: "Either username or password is incorrect",
-      jwt: null,
-    })
-  }
-  const user = users[0]
 
-  const valid = await compare(password, user.password)
+  const valid = await compare(password, admin.password)
   if (!valid) {
     return NextResponse.json({
       error: "Either username or password is incorrect",
@@ -32,7 +30,7 @@ export async function POST(req: Request) {
     })
   }
 
-  const token = sign({ id: user.id, username }, process.env.JWT_SECRET_KEY!, {
+  const token = sign({ id: admin.id, username }, process.env.JWT_SECRET_KEY!, {
     expiresIn: MAX_AGE,
   })
 

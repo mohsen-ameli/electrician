@@ -3,16 +3,17 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbo",
+    "dev": "next dev",
+    "devT": "next dev --turbo",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "generate": "drizzle-kit generate:pg",
-    "push": "drizzle-kit push:pg",
-    "studio": "drizzle-kit studio",
+    "migrate": "prisma generate && prisma db push",
+    "studio": "prisma studio",
     "prettier": "prettier --write \"./**/*.{js,jsx,ts,tsx,json}\""
   },
   "dependencies": {
+    "@prisma/client": "^5.6.0",
     "@radix-ui/react-dropdown-menu": "^2.0.6",
     "@radix-ui/react-navigation-menu": "^1.1.4",
     "@radix-ui/react-slot": "^1.0.2",
@@ -22,8 +23,6 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "cookie": "^0.6.0",
-    "drizzle-kit": "^0.19.13",
-    "drizzle-orm": "^0.28.6",
     "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.292.0",
     "next": "14.0.2",
@@ -53,6 +52,7 @@
     "postcss": "^8",
     "prettier": "^3.0.3",
     "prettier-plugin-tailwindcss": "^0.5.6",
+    "prisma": "^5.6.0",
     "tailwindcss": "^3.3.0",
     "typescript": "^5"
   }

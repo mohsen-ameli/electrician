@@ -1,8 +1,5 @@
-import { db } from "@/db/drizzle-db"
-import { admin, users } from "@/db/schema"
-import { hash } from "bcryptjs"
-import { sql } from "drizzle-orm"
 import { NextRequest, NextResponse } from "next/server"
+import prisma from "@/db/prisma-db"
 
 export async function GET(req: NextRequest) {
   // const blogs = await db.query.blogs.findMany()
@@ -22,6 +19,22 @@ export async function GET(req: NextRequest) {
   // const a = await db.execute(
   //   sql`SELECT * FROM admin WHERE username = ${username};`
   // )
+  // const blogs = await prisma.blogs.findMany()
+  // await prisma.admin.create({
+  //   data: {
+  //     username: "",
+  //     email: "",
+  //     password: await hash("", 10),
+  //   },
+  // })
+  // await prisma.blogs.create({
+  //   data: {
+  //     slug: "test-title",
+  //     content:
+  //       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et, esse?",
+  //     title: "test-title",
+  //   },
+  // })
 
   return NextResponse.json({})
 }

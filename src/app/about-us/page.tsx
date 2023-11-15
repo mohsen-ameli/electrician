@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function AboutUs() {
   return (
-    <div className="container px-20 pt-8 mx-auto">
+    <div className="container mx-auto px-20 pt-8">
       <Header
         title="about us"
         description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo est
@@ -25,8 +25,8 @@ export default function AboutUs() {
           alt="lights"
           className="rounded-2xl shadow-2xl drop-shadow-2xl"
         />
-        <div className="pl-16 text-right space-y-2">
-          <h1 className="capitalize text-4xl border-b-2 border-yellow-400 mb-3 pb-1 w-fit ml-auto">
+        <div className="space-y-2 pl-16 text-right">
+          <h1 className="mb-3 ml-auto w-fit border-b-2 border-yellow-400 pb-1 text-4xl capitalize">
             Our goal
           </h1>
           <h1 className="text-xl leading-normal">
@@ -38,9 +38,9 @@ export default function AboutUs() {
         </div>
       </div>
 
-      <div className="flex items-center gap-4 mt-8">
-        <div className="pr-16 text-left space-y-2">
-          <h1 className="capitalize text-4xl border-b-2 border-yellow-400 mb-3 pb-1 w-fit">
+      <div className="mt-8 flex items-center gap-4">
+        <div className="space-y-2 pr-16 text-left">
+          <h1 className="mb-3 w-fit border-b-2 border-yellow-400 pb-1 text-4xl capitalize">
             Our mission
           </h1>
           <h1 className="text-xl leading-normal">

@@ -12,14 +12,14 @@ export default function Gallery() {
   const images = [0, 1, 2, 3, 4]
 
   return (
-    <div className="container px-20 p-8 mx-auto">
+    <div className="container mx-auto p-8 px-20">
       <Header
         title="Our work's gallery"
         description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo est
           alias vel, id iusto, molestiae ab ex necessitatibus"
       />
 
-      <div className="flex flex-wrap gap-4 mt-8">
+      <div className="mt-8 flex flex-wrap gap-4">
         {images.map(image => (
           <Image
             src={`/${image}.jpg`}
