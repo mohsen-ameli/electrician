@@ -14,37 +14,64 @@ export default function Admin() {
     const password = form.get("password") as string
     console.log("HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
 
-    let data: { error: string | null; jwt: string | null }
+    let data: { error: string | null; jwt: string | null } = {
+      error: "SOMETHING WENT WRONG",
+      jwt: null,
+    }
+    let user:
+      | {
+          username: string
+          password: string
+          id: number
+        }
+      | undefined
 
     const MAX_AGE = 60 * 60 * 24 * 1 // 1 day
 
-    const user = await db.query.admin.findFirst({
-      where: eq(admin.username, username),
-    })
+    try {
+      user = await db.query.admin.findFirst({
+        where: eq(admin.username, username),
+      })
+    } catch (error) {
+      console.log("QUERRRRYY FAILEDDDDDDDDDDDDDDDd ", error)
+    }
+
     if (!user) {
       data = {
         error: "Either username or password is incorrect",
         jwt: null,
       }
     } else {
-      const valid = await compare(password, user.password)
+      let valid = false
+      try {
+        valid = await compare(password, user.password)
+      } catch (error) {
+        console.log("VALID FAILEDDDDDDDDDDDDDDDd ", error)
+      }
       if (!valid) {
         data = {
           error: "Either username or password is incorrect",
           jwt: null,
         }
-      }
-
-      const token = sign(
-        { id: user.id, username },
-        process.env.JWT_SECRET_KEY!,
-        {
-          expiresIn: MAX_AGE,
+      } else {
+        let token = ""
+        try {
+          token = sign({ id: user.id, username }, process.env.JWT_SECRET_KEY!, {
+            expiresIn: MAX_AGE,
+          })
+        } catch (error) {
+          console.log("SIGN FAILEDDDDDDDDDDDDDDDd ", error)
         }
-      )
 
-      data = { error: null, jwt: token }
+        if (!token) {
+          console.log("TOKEN FAILEDDDDDDDDDDDDDDDd ")
+        } else {
+          data = { error: null, jwt: token }
+        }
+      }
     }
+
+    console.log("DATAAAAAAAAAAAAAAAAAAAAAAAAAAa", data)
 
     if (!data.error) {
       redirect("/")
