@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button"
 import { db } from "@/db/drizzle-db"
 import { admin } from "@/db/schema"
 import { compare } from "bcryptjs"
-import { eq } from "drizzle-orm"
+import { eq, sql } from "drizzle-orm"
 import { sign } from "jsonwebtoken"
 import { redirect } from "next/navigation"
 
@@ -29,9 +29,13 @@ export default function Admin() {
     const MAX_AGE = 60 * 60 * 24 * 1 // 1 day
 
     try {
-      user = await db.query.admin.findFirst({
-        where: eq(admin.username, username),
-      })
+      // @ts-ignore
+      user = await db.execute(
+        sql`SELECT * FROM admin WHERE username = ${username}`
+      )[0]
+      // user = await db.query.admin.findFirst({
+      //   where: eq(admin.username, username),
+      // })
     } catch (error) {
       console.log("QUERRRRYY FAILEDDDDDDDDDDDDDDDd ", error)
     }

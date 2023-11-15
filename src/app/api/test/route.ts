@@ -1,10 +1,12 @@
 import { db } from "@/db/drizzle-db"
 import { admin } from "@/db/schema"
 import { sql } from "drizzle-orm"
-import { NextResponse } from "next/server"
+import { NextRequest, NextResponse } from "next/server"
 
-export async function GET() {
-  const blogs = await db.query.blogs.findMany()
+export async function GET(req: NextRequest) {
+  // const blogs = await db.query.blogs.findMany()
+  const { searchParams } = new URL(req.url)
+  const username = searchParams.get("username")
   // const blogs = await db.execute(sql`CREATE TABLE IF NOT EXISTS "admin" (
   //   "id" serial PRIMARY KEY NOT NULL,
   //   "username" varchar(256) NOT NULL,
@@ -15,6 +17,10 @@ export async function GET() {
   //   username: ".",
   //   password: await bcrypt.hash(".", 10),
   // })
+  console.log(username)
+  const a = await db.execute(
+    sql`SELECT * FROM admin WHERE username = (${username});`
+  )
 
-  return NextResponse.json(blogs)
+  return NextResponse.json(a)
 }
