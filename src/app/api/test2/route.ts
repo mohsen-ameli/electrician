@@ -1,6 +1,4 @@
 import { db } from "@/db/drizzle-db"
-import { admin } from "@/db/schema"
-import { eq, sql } from "drizzle-orm"
 import { NextRequest, NextResponse } from "next/server"
 
 export async function GET(req: NextRequest) {
@@ -10,7 +8,8 @@ export async function GET(req: NextRequest) {
   // const user = await db.query.admin.findFirst({
   //   where: eq(admin.username, username),
   // })
+  const admins = await db.query.admin.findMany()
 
   // return NextResponse.json(user)
-  return NextResponse.json({ users: await db.query.admin.findMany() })
+  return NextResponse.json({ admins, len: admins.length })
 }
