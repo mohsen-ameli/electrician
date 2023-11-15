@@ -9,7 +9,7 @@ export default function Admin() {
     const password = e.currentTarget.password.value
     console.log("HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
 
-    const res = await fetch(process.env.NEXT_PUBLIC_HOST + "/api/login", {
+    const res = await fetch("/api/login", {
       method: "POST",
       body: JSON.stringify({ username, password }),
     })
