@@ -5,7 +5,7 @@ import ShareButton from "../share"
 import Link from "next/link"
 
 export async function generateStaticParams() {
-  const blogs = await prisma.blogs.findMany()
+  const blogs = await prisma.blog.findMany()
   return blogs.map(blog => ({
     slug: blog.slug,
   }))
@@ -16,7 +16,7 @@ export default async function page({
 }: {
   params: { slug: string }
 }) {
-  const blog = await prisma.blogs.findFirst({ where: { slug } })
+  const blog = await prisma.blog.findFirst({ where: { slug } })
 
   if (!blog) {
     return <div>Blog not found</div>

@@ -7,11 +7,12 @@ datasource db {
   url      = env("POSTGRES_URL")
 }
 
-model blogs {
+model blog {
   slug      String   @id
   createdAt DateTime @default(now())
   title     String
   content   String
+  image     String
 }
 
 model admin {

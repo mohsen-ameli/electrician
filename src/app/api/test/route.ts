@@ -19,7 +19,7 @@ export async function GET(req: NextRequest) {
   // const a = await db.execute(
   //   sql`SELECT * FROM admin WHERE username = ${username};`
   // )
-  // const blogs = await prisma.blogs.findMany()
+  // const blogs = await prisma.blog.findMany()
   // await prisma.admin.create({
   //   data: {
   //     username: "",
@@ -27,7 +27,7 @@ export async function GET(req: NextRequest) {
   //     password: await hash("", 10),
   //   },
   // })
-  // await prisma.blogs.create({
+  // await prisma.blog.create({
   //   data: {
   //     slug: "test-title",
   //     content:
@@ -35,6 +35,7 @@ export async function GET(req: NextRequest) {
   //     title: "test-title",
   //   },
   // })
+  // await prisma.$executeRaw`DROP TABLE blogs;`
 
   return NextResponse.json({})
 }

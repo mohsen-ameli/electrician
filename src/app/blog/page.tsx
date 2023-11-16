@@ -11,8 +11,10 @@ export const metadata: Metadata = {
   description: "Read about our work, learn more about our profession.",
 }
 
+export const revalidate = 10
+
 export default async function Blog() {
-  const blogs = await prisma.blogs.findMany()
+  const blogs = await prisma.blog.findMany()
 
   return (
     <div className="container">

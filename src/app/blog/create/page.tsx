@@ -1,26 +1,52 @@
+"use client"
+
 import SendButton from "@/components/send-button"
-import { authenticate } from "@/lib/authenticate"
-import { redirect } from "next/navigation"
-import prisma from "@/db/prisma-db"
+import Upload from "./upload"
+import { useEffect, useRef, useState } from "react"
+import addBlog from "./action"
+import { useRouter } from "next/navigation"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { Progress } from "@/components/ui/progress"
 
-export default async function CreateBlog() {
-  const authenticated = await authenticate()
-  if (!authenticated) redirect("/blog")
+export default function CreateBlog() {
+  const router = useRouter()
+  const [start, setStart] = useState(false)
+  const [url, setUrl] = useState<string | null>(null)
+  const [progress, setProgress] = useState(0)
+  const title = useRef<HTMLInputElement>(null!)
+  const content = useRef<HTMLTextAreaElement>(null!)
 
-  async function addBlog(form: FormData) {
-    "use server"
-
-    const title = form.get("title") as string
-    const content = form.get("content") as string
-    const slug = title.toLowerCase().replace(/\s/g, "-")
-    const createdAt = new Date()
-    await prisma.blogs.create({ data: { slug, title, content, createdAt } })
-    redirect("/blog/" + slug)
+  async function submit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    setStart(true)
   }
 
+  useEffect(() => {
+    async function add() {
+      if (!url) return alert("Please upload an image")
+
+      const title_ = title.current.value
+      const content_ = content.current.value
+
+      const slug = title_.toLowerCase().replace(/\s/g, "-")
+
+      await addBlog(slug, title_, content_, url)
+      router.push("/blog/" + slug)
+    }
+    if (url) add()
+  }, [url])
+
   return (
-    <form action={addBlog} className="container space-y-6 p-8">
+    <form onSubmit={submit} className="container space-y-6 p-8">
       <div className="flex flex-col gap-1">
+        <Upload start={start} setUrl={setUrl} setProgress={setProgress} />
         <label htmlFor="title">
           Title <span className="text-red-500">*</span>
         </label>
@@ -28,6 +54,7 @@ export default async function CreateBlog() {
           type="text"
           name="title"
           required
+          ref={title}
           className="rounded-md border-2 border-black p-2"
         />
       </div>
@@ -38,15 +65,28 @@ export default async function CreateBlog() {
         <textarea
           name="content"
           required
+          ref={content}
           className="min-h-[200px] rounded-md border-2 border-black p-2"
         />
       </div>
 
-      <SendButton
-        actionText="Add Blog"
-        pendingText="Adding Blog"
-        doneText="Blog Added"
-      />
+      <Dialog>
+        <DialogTrigger className="w-full">
+          <SendButton
+            actionText="Add Blog"
+            pendingText="Adding Blog"
+            doneText="Blog Added"
+          />
+        </DialogTrigger>
+        <DialogContent includeX={false}>
+          <DialogHeader>
+            <DialogDescription className="space-y-4 pt-2">
+              <Progress value={progress} />
+              <h1 className="text-center">Uploading your image...</h1>
+            </DialogDescription>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
     </form>
   )
 }
