@@ -1,86 +1,42 @@
 "use client"
 
-import Upload from "./upload"
-import { Suspense, useEffect, useRef, useState } from "react"
-import { addBlog, validateBlog } from "./action"
-import { useRouter } from "next/navigation"
-import { Progress } from "@/components/ui/progress"
-import { toast } from "@/components/ui/use-toast"
-import { Button } from "@/components/ui/button"
 import Loading from "@/components/loading"
+import { submitAction, validateBlog } from "./action"
+import { Button } from "@/components/ui/button"
+import { toast } from "@/components/ui/use-toast"
+import { useState } from "react"
 
-export default function CreateBlog() {
-  const router = useRouter()
-
-  const [start, setStart] = useState(false)
-  const [url, setUrl] = useState<string | null>(null)
-  const [selected, setSelected] = useState(false)
-  const [progress, setProgress] = useState(0)
-  const [open, setOpen] = useState(false)
+export default function page() {
   const [loading, setLoading] = useState(false)
 
-  const title = useRef<HTMLInputElement>(null!)
-  const content = useRef<HTMLTextAreaElement>(null!)
+  async function submit(form: FormData) {
+    const data = await validateBlog(form.get("title") as string)
+    if (data.error) {
+      toast({ title: "Validation failed!", description: data.error })
+      return setLoading(false)
+    }
 
-  async function submit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-
-    if (!selected) {
-      toast({ title: "Please upload an image" })
-    } else {
-      setLoading(true)
-      const res = await validateBlog(makeSlug(title.current.value))
-
-      if (res.error) {
-        setLoading(false)
-        return toast({ title: "Validation failed!", description: res.error })
-      } else {
-        setStart(true)
-        setOpen(true)
-      }
+    const res = await submitAction(form)
+    if (res.error) {
+      toast({ title: "An error happened!", description: res.error })
+      setLoading(false)
     }
   }
 
-  useEffect(() => {
-    async function add() {
-      if (!url) {
-        setLoading(false)
-        return alert("Please upload an image")
-      }
-
-      const title_ = title.current.value
-      const content_ = content.current.value
-      const slug = makeSlug(title_)
-
-      const res = await addBlog(slug, title_, content_, url)
-
-      if (res.success) {
-        router.push(`/blog/${slug}/`)
-        return
-      } else {
-        toast({
-          title: "Blog creation failed!",
-          description: res.error,
-        })
-        setOpen(false)
-        setProgress(0)
-        setLoading(false)
-      }
-    }
-    if (url) add()
-  }, [url])
-
   return (
-    <form onSubmit={submit} className="container space-y-6 p-8">
+    <form
+      onSubmit={() => setLoading(true)}
+      action={submit}
+      className="container space-y-6 p-8"
+    >
       <div className="flex flex-col gap-1">
-        <Suspense fallback={<>Something went really wrong!</>}>
-          <Upload
-            start={start}
-            setUrl={setUrl}
-            setProgress={setProgress}
-            setSelected={setSelected}
-          />
-        </Suspense>
+        <label htmlFor="image">
+          Image <span className="text-red-500">*</span>
+        </label>
+        <input type="file" name="image" />
+      </div>
+
+      <div className="flex flex-col gap-1">
         <label htmlFor="title">
           Title <span className="text-red-500">*</span>
         </label>
@@ -88,10 +44,10 @@ export default function CreateBlog() {
           type="text"
           name="title"
           required
-          ref={title}
           className="rounded-md border-2 border-black p-2"
         />
       </div>
+
       <div className="flex flex-col gap-1">
         <label htmlFor="content">
           Content <span className="text-red-500">*</span>
@@ -99,7 +55,6 @@ export default function CreateBlog() {
         <textarea
           name="content"
           required
-          ref={content}
           className="min-h-[200px] rounded-md border-2 border-black p-2"
         />
       </div>
@@ -110,23 +65,8 @@ export default function CreateBlog() {
         type="submit"
         disabled={loading}
       >
-        {loading ? <Loading center={false} /> : "Add Blog"}
+        {loading ? <Loading /> : "Add Blog"}
       </Button>
-
-      <dialog open={open} onClose={() => setOpen(false)}>
-        <div className="fixed inset-0 grid place-content-center bg-black/75">
-          <div className="w-full rounded-xl border-2 bg-black p-4 shadow-lg lg:w-[400px]">
-            <div className="space-y-4 p-4">
-              <Progress value={progress} />
-              <div className="text-center">Uploading your image...</div>
-            </div>
-          </div>
-        </div>
-      </dialog>
     </form>
   )
-}
-
-function makeSlug(title: string) {
-  return title.toLowerCase().replace(/\s/g, "-")
 }

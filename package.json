@@ -20,7 +20,7 @@
     "@radix-ui/react-progress": "^1.0.3",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-toast": "^1.1.5",
-    "@uploadthing/react": "^6.0.0",
+    "aws-sdk": "^2.1499.0",
     "bcryptjs": "^2.4.3",
     "bindings": "^1.5.0",
     "class-variance-authority": "^0.7.0",
@@ -41,7 +41,6 @@
     "tailwind-merge": "^2.0.0",
     "tailwindcss-animate": "^1.0.7",
     "universal-cookie": "^6.1.1",
-    "uploadthing": "^6.0.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {

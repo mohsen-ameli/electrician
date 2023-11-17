@@ -46,7 +46,7 @@ export default async function Blog() {
                 year: "numeric",
               })}
             </p>
-            <p>{limitString(blog.content, 50)}</p>
+            <p>{limitString(blog.content, 20)}</p>
             <div className="mt-4 flex items-center gap-x-4">
               <Link href={`/blog/${blog.slug}/`}>
                 <Button>Read More</Button>

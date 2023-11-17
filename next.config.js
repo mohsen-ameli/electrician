@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    remotePatterns: [{ hostname: "utfs.io" }],
+    remotePatterns: [{ hostname: "echo-power-electric.s3.amazonaws.com" }],
   },
 }
 
