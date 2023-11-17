@@ -18,32 +18,25 @@ export default function Upload({
   start,
   setUrl,
   setProgress,
+  setSelected,
 }: {
   start: boolean
   setUrl: Dispatch<SetStateAction<string | null>>
   setProgress: Dispatch<SetStateAction<number>>
+  setSelected: Dispatch<SetStateAction<boolean>>
 }) {
   const [files, setFiles] = useState<File[]>([])
   const onDrop = useCallback((acceptedFiles: FileWithPath[]) => {
     setFiles(acceptedFiles)
+    setSelected(true)
   }, [])
   const [stage, setStage] = useState<Stage>("idle")
 
-  const { startUpload, permittedFileInfo, isUploading } = useUploadThing(
-    "imageUploader",
-    {
-      onClientUploadComplete: () => {
-        setStage("complete")
-      },
-      onUploadError: () => {
-        setStage("error")
-      },
-      onUploadProgress: p => {
-        setProgress(p)
-        console.log("progress", p)
-      },
-    }
-  )
+  const { startUpload, permittedFileInfo } = useUploadThing("imageUploader", {
+    onClientUploadComplete: () => setStage("complete"),
+    onUploadError: () => setStage("error"),
+    onUploadProgress: p => setProgress(p),
+  })
 
   useEffect(() => {
     async function upload() {
@@ -66,8 +59,6 @@ export default function Upload({
     return <h1>Image uploaded successfully!</h1>
   } else if (stage === "error") {
     return <h1>There was an error uploading your image.</h1>
-  } else if (isUploading) {
-    return <></>
   } else if (files.length > 0) {
     return <h1 className="pb-4">Image selected!</h1>
   }

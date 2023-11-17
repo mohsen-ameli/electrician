@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import Cookies from "universal-cookie"
+import { login } from "@/lib/login"
 
 const MAX_AGE = 60 * 60 * 24 * 1
 
@@ -20,16 +21,12 @@ export default function Admin() {
     const username = e.currentTarget.username.value
     const password = e.currentTarget.password.value
 
-    const res = await fetch("/api/login", {
-      method: "POST",
-      body: JSON.stringify({ username, password }),
-    })
-    const { error: err, jwt }: { error: string | null; jwt: string } =
-      await res.json()
-    if (err) {
+    const { error, jwt } = await login(username, password)
+
+    if (error) {
       toast({
         title: "Login Failed!",
-        description: err,
+        description: error,
       })
     } else {
       const cookies = new Cookies()

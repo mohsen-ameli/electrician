@@ -4,22 +4,21 @@ import Link from "next/link"
 import React, { useEffect, useState } from "react"
 import { Button } from "./ui/button"
 import { usePathname } from "next/navigation"
+import { isAuthenticated } from "@/lib/is-authenticated"
 
 export default function Authed() {
-  const [authed, setAuthed] = useState(false)
+  const [authenticated, setAuthenticated] = useState(false)
   const path = usePathname()
 
   async function getAuth() {
-    const res = await fetch(process.env.NEXT_PUBLIC_HOST + "/api/auth")
-    const data: boolean = await res.json()
-    setAuthed(data)
+    setAuthenticated(await isAuthenticated())
   }
 
   useEffect(() => {
     getAuth()
   }, [path])
 
-  if (!authed) return <></>
+  if (!authenticated) return <></>
 
   return (
     <Link href="/blog/create">

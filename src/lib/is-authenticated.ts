@@ -3,7 +3,7 @@
 import { verify } from "jsonwebtoken"
 import { cookies } from "next/headers"
 
-export async function authenticate() {
+export async function isAuthenticated() {
   try {
     const cookieStore = cookies()
     const token = cookieStore.get("jwt")

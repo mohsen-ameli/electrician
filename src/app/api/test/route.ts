@@ -15,7 +15,6 @@ export async function GET(req: NextRequest) {
   //   username: ".",
   //   password: await hash(".", 10),
   // })
-  // console.log(username)
   // const a = await db.execute(
   //   sql`SELECT * FROM admin WHERE username = ${username};`
   // )
@@ -35,7 +34,8 @@ export async function GET(req: NextRequest) {
   //     title: "test-title",
   //   },
   // })
-  // await prisma.$executeRaw`DROP TABLE blogs;`
+  // await prisma.$executeRaw`DROP TABLE blog;`
+  // await addBlog("Hello", "Hello", "shdfsd", "lsjdf")
 
   return NextResponse.json({})
 }

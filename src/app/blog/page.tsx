@@ -5,6 +5,7 @@ import Link from "next/link"
 import ShareButton from "./share"
 import { Metadata } from "next"
 import prisma from "@/db/prisma-db"
+import Image from "next/image"
 
 export const metadata: Metadata = {
   title: "Echo Power Electric | Blog",
@@ -23,12 +24,20 @@ export default async function Blog() {
         description="Read about our blogs and subscribe to our newsletter to receive them via email."
       />
 
-      <div className="flex flex-col gap-8">
+      <div className="grid grid-cols-4 gap-8">
         {blogs.map(blog => (
           <div
-            className="space-y-4 rounded-xl bg-slate-300 p-8 dark:bg-slate-700"
+            className="space-y-4 rounded-xl bg-slate-300 p-6 dark:bg-slate-700"
             key={blog.slug}
           >
+            <div className="relative h-[200px] w-full">
+              <Image
+                src={blog.image}
+                alt={blog.title}
+                fill
+                className="rounded-md object-cover"
+              />
+            </div>
             <h1 className="text-4xl font-semibold">{blog.title}</h1>
             <p>
               {new Date(blog.createdAt).toLocaleString("default", {
