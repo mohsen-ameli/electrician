@@ -5,9 +5,12 @@ import { submitAction, validateBlog } from "./action"
 import { Button } from "@/components/ui/button"
 import { toast } from "@/components/ui/use-toast"
 import { useState } from "react"
+import { Prisma } from "@prisma/client"
+import { articleType } from "@/lib/types"
 
 export default function page() {
   const [loading, setLoading] = useState(false)
+  const [type, setType] = useState<articleType>("blog")
 
   async function submit(form: FormData) {
     const data = await validateBlog(form.get("title") as string)
@@ -30,11 +33,30 @@ export default function page() {
       className="container space-y-6 p-8"
     >
       <div className="flex flex-col gap-1">
-        <label htmlFor="image">
-          Image <span className="text-red-500">*</span>
+        <label htmlFor="type">
+          Type <span className="text-red-500">*</span>
         </label>
-        <input type="file" name="image" />
+        <select
+          name="type"
+          required
+          defaultValue={type}
+          onChange={e => setType(e.target.value as articleType)}
+          className="rounded-md border-2 border-black p-2"
+        >
+          <option value="blog">Blog</option>
+          <option value="residential">Residential</option>
+          <option value="commercial">Commercial</option>
+        </select>
       </div>
+
+      {type === "blog" && (
+        <div className="flex flex-col gap-1">
+          <label htmlFor="image">
+            Image <span className="text-red-500">*</span>
+          </label>
+          <input type="file" name="image" />
+        </div>
+      )}
 
       <div className="flex flex-col gap-1">
         <label htmlFor="title">

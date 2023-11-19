@@ -4,6 +4,7 @@ import { S3 } from "aws-sdk"
 import { redirect } from "next/navigation"
 import prisma from "@/db/prisma-db"
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library"
+import { articleType } from "./page"
 
 async function s3Upload(file: File) {
   const s3 = new S3({
@@ -30,7 +31,7 @@ async function s3Upload(file: File) {
     })
 
     return {
-      error: null,
+      error: "",
       success: true,
       url: `https://${process.env.AWS_BUCKET_NAME}.s3.amazonaws.com/${file.name}`,
     }
@@ -47,13 +48,14 @@ async function addBlog(
   slug: string,
   title: string,
   content: string,
-  image: string
+  type: articleType,
+  image: string | null
 ) {
   const createdAt = new Date()
 
   try {
-    await prisma.blog.create({
-      data: { slug, title, content, createdAt, image },
+    await prisma.article.create({
+      data: { slug, title, content, createdAt, image, type },
     })
     return {
       success: true,
@@ -77,33 +79,37 @@ async function addBlog(
 }
 
 export async function submitAction(formData: FormData) {
-  const file = formData.get("image") as File
+  const file = formData.get("image") as File | null
+  const type = formData.get("type") as articleType
   const title = formData.get("title") as string
   const content = formData.get("content") as string
   const slug = title.toLowerCase().replace(/\s/g, "-")
+  let image: Awaited<ReturnType<typeof s3Upload>> | null = null
 
-  const image = await s3Upload(file)
-
-  if (!image.success)
-    return {
-      error: image.error,
-      success: false,
+  if (file) {
+    image = await s3Upload(file)
+    if (!image.success) {
+      return {
+        error: image.error,
+        success: false,
+      }
     }
+  }
 
-  const res = await addBlog(slug, title, content, image.url)
+  const res = await addBlog(slug, title, content, type, image?.url || null)
   if (!res.success)
     return {
       error: res.error,
       success: false,
     }
 
-  redirect(`/blog/${slug}/`)
+  redirect(`/article/${type}/${slug}/`)
 }
 
 export async function validateBlog(title: string) {
   const slug = title.toLowerCase().replace(/\s/g, "-")
 
-  const alreadyExists = await prisma.blog.findUnique({
+  const alreadyExists = await prisma.article.findUnique({
     where: { slug },
   })
   if (alreadyExists) {

@@ -21,12 +21,12 @@ export default function Authed() {
   if (!authenticated) return <></>
 
   return (
-    <Link href="/blog/create">
+    <Link href="/article/create/">
       <Button
         variant="ghost"
         className="text-base font-normal text-black transition-all hover:scale-95"
       >
-        Create Blog
+        Create Article
       </Button>
     </Link>
   )

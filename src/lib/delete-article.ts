@@ -1,9 +1,10 @@
 "use server"
+
 import prisma from "@/db/prisma-db"
 
-export async function deleteBlog(slug: string) {
+export async function deleteArticle(slug: string) {
   try {
-    await prisma.blog.delete({ where: { slug } })
+    await prisma.article.delete({ where: { slug } })
     return {
       error: "",
       success: true,
