@@ -36,7 +36,7 @@ export default function Admin() {
         secure: process.env.NODE_ENV === "production",
         maxAge: MAX_AGE,
       })
-      router.push("/blog")
+      router.push("/article/blog")
     }
 
     setTimeout(() => {

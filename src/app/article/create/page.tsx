@@ -86,7 +86,7 @@ export default function page() {
         type="submit"
         disabled={loading}
       >
-        {loading ? <Loading /> : "Add Blog"}
+        {loading ? <Loading /> : `Add ${type} article`}
       </Button>
     </form>
   )

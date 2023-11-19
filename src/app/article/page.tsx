@@ -6,14 +6,14 @@ export default function page() {
   const articlesTypes: articleType[] = ["blog", "residential", "commercial"]
 
   return (
-    <>
-      {JSON.stringify(articlesTypes)}
+    <div className="m-8 flex flex-col gap-8">
       {articlesTypes.map(type => (
-        <div key={type}>
-          <h1>{type}</h1>
-          <Link href={`/article/${type}`}>{type}</Link>
-        </div>
+        <Link key={type} href={`/article/${type}`}>
+          <div className="w-full cursor-pointer rounded-xl bg-slate-800 p-8 text-center text-2xl capitalize text-white">
+            Go to {type + "s"}
+          </div>
+        </Link>
       ))}
-    </>
+    </div>
   )
 }

@@ -20,11 +20,13 @@ export default function Footer() {
             Quick Links
           </h1>
           {/* prettier-ignore */}
-          <ul className="space-y-4">
-            <li><Link href="/">Home</Link></li>
-            <li><Link href="about-us">About Us</Link></li>
-            <li><Link href="gallery">Gallery</Link></li>
-            <li><Link href="contact-us">Contact Us</Link></li>
+          <ul className="grid grid-cols-2 gap-2">
+            <Link className="hover:text-cyan-200 hover:underline p-2" href="/">Home</Link>
+            <Link className="hover:text-cyan-200 hover:underline p-2" href="/article/residential">Residential</Link>
+            <Link className="hover:text-cyan-200 hover:underline p-2" href="/article/commercial">Commercial</Link>
+            <Link className="hover:text-cyan-200 hover:underline p-2" href="/about-us">About Us</Link>
+            <Link className="hover:text-cyan-200 hover:underline p-2" href="/gallery">Gallery</Link>
+            <Link className="hover:text-cyan-200 hover:underline p-2" href="/contact-us">Contact Us</Link>
           </ul>
         </div>
         <div>
