@@ -10,6 +10,7 @@ import ShareButton from "../share"
 export async function generateStaticParams() {
   const articles = await prisma.article.findMany()
   return articles.map(article => ({
+    type: article.type,
     slug: article.slug,
   }))
 }

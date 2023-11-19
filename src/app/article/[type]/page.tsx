@@ -9,13 +9,17 @@ import Image from "next/image"
 import ShareButton from "./share"
 
 export const metadata: Metadata = {
-  title: "Echo Power Electric | Blog",
+  title: "Echo Power Electric | Articles",
   description: "Read about our work, learn more about our profession.",
 }
 
 export const revalidate = 10
 
 const articlesTypes: articleType[] = ["blog", "residential", "commercial"]
+
+export async function generateStaticParams() {
+  return articlesTypes.map(type => ({ type }))
+}
 
 export default async function page({
   params,

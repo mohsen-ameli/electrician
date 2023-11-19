@@ -5,7 +5,6 @@ import { submitAction, validateBlog } from "./action"
 import { Button } from "@/components/ui/button"
 import { toast } from "@/components/ui/use-toast"
 import { useState } from "react"
-import { Prisma } from "@prisma/client"
 import { articleType } from "@/lib/types"
 
 export default function page() {

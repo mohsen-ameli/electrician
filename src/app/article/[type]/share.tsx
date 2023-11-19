@@ -1,6 +1,6 @@
 "use client"
 
-import { Check, Facebook, Link, Share, Share2, Twitter } from "lucide-react"
+import { Check, Facebook, Link, Share2, Twitter } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,

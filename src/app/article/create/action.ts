@@ -4,7 +4,7 @@ import { S3 } from "aws-sdk"
 import { redirect } from "next/navigation"
 import prisma from "@/db/prisma-db"
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library"
-import { articleType } from "./page"
+import { articleType } from "@/lib/types"
 
 async function s3Upload(file: File) {
   const s3 = new S3({
