@@ -6,7 +6,11 @@ import prisma from "@/db/prisma-db"
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library"
 import { articleType } from "@/lib/types"
 
-async function s3Upload(file: File) {
+export async function getS3Url(name: string) {
+  return `https://${process.env.AWS_BUCKET_NAME}.s3.amazonaws.com/${name}`
+}
+
+export async function s3Upload(file: File) {
   const s3 = new S3({
     region: "us-east-1",
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -33,7 +37,7 @@ async function s3Upload(file: File) {
     return {
       error: "",
       success: true,
-      url: `https://${process.env.AWS_BUCKET_NAME}.s3.amazonaws.com/${file.name}`,
+      url: await getS3Url(file.name),
     }
   } catch (error) {
     return {
@@ -84,19 +88,24 @@ export async function submitAction(formData: FormData) {
   const title = formData.get("title") as string
   const content = formData.get("content") as string
   const slug = title.toLowerCase().replace(/\s/g, "-")
-  let image: Awaited<ReturnType<typeof s3Upload>> | null = null
+  let image = ""
 
-  if (file) {
-    image = await s3Upload(file)
-    if (!image.success) {
+  const url = await getS3Url((file as File).name)
+  const duplicate = (await fetch(url)).ok
+  if (duplicate) image = url
+
+  if (file && !duplicate) {
+    const res = await s3Upload(file)
+    if (!res.success) {
       return {
-        error: image.error,
+        error: res.error,
         success: false,
       }
     }
+    image = res.url
   }
 
-  const res = await addBlog(slug, title, content, type, image?.url || null)
+  const res = await addBlog(slug, title, content, type, image)
   if (!res.success)
     return {
       error: res.error,

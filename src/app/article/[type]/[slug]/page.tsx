@@ -6,6 +6,7 @@ import Image from "next/image"
 import { isAuthenticated } from "@/lib/is-authenticated"
 import DeleteArticle from "./delete-article"
 import ShareButton from "../share"
+import UpdateArticle from "./update-article"
 
 export async function generateStaticParams() {
   const articles = await prisma.article.findMany()
@@ -44,6 +45,7 @@ export default async function page({
           {article.title}
           <div className="flex items-center gap-x-4">
             {authenticated && <DeleteArticle slug={article.slug} />}
+            {authenticated && <UpdateArticle article={article} />}
             <ShareButton title={article.title} />
           </div>
         </h1>
