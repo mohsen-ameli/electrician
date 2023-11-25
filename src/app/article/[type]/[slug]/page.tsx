@@ -29,7 +29,7 @@ export default async function page({
   }
 
   return (
-    <div className="container mt-8 px-32 py-8">
+    <div className="container mx-auto px-4 pt-4 lg:px-20 lg:pt-8">
       <div className="rounded-xl bg-slate-300 p-8 dark:bg-slate-700">
         {article.image && (
           <div className="relative mb-6 h-[400px] w-full">
@@ -41,9 +41,9 @@ export default async function page({
             />
           </div>
         )}
-        <h1 className="flex items-center justify-between text-5xl font-semibold">
+        <h1 className="flex flex-col justify-between gap-4 text-3xl font-semibold lg:flex-row lg:items-center lg:text-5xl">
           {article.title}
-          <div className="flex items-center gap-x-4">
+          <div className="flex items-center gap-4">
             {authenticated && <DeleteArticle slug={article.slug} />}
             {authenticated && <UpdateArticle article={article} />}
             <ShareButton title={article.title} />

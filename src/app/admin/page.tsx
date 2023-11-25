@@ -45,7 +45,7 @@ export default function Admin() {
   }
 
   return (
-    <div className="container p-8">
+    <div className="container lg:p-8">
       <h1 className="text-center text-2xl">
         If you are here, then it can only mean two things. You are the admin, or
         you are "trying" to become the admin. I hope you are the right person...
@@ -54,7 +54,7 @@ export default function Admin() {
 
       <form
         onSubmit={handleForm}
-        className="flex flex-col space-y-6 px-32 py-8"
+        className="flex flex-col space-y-6 py-8 lg:px-32"
       >
         <div className="flex flex-col gap-1">
           <label htmlFor="username">

@@ -3,26 +3,9 @@ import Link from "next/link"
 import Menu from "./menu"
 import prisma from "@/db/prisma-db"
 import { Instagram, Phone } from "lucide-react"
+import { MobileNav } from "./mobile-nav"
 
-// const residential = [
-//   { id: 0, title: "Service A", description: "Service A description" },
-//   { id: 1, title: "Service B", description: "Service B description" },
-//   { id: 2, title: "Service C", description: "Service C description" },
-//   { id: 3, title: "Service D", description: "Service D description" },
-//   { id: 4, title: "Service E", description: "Service E description" },
-//   { id: 5, title: "Service F", description: "Service E description" },
-// ]
-// export type Residential = typeof residential
-
-// const commercial = [
-//   { id: 0, title: "Commercial A", description: "Commercial A description" },
-//   { id: 1, title: "Commercial B", description: "Commercial B description" },
-//   { id: 2, title: "Commercial C", description: "Commercial C description" },
-//   { id: 3, title: "Commercial D", description: "Commercial D description" },
-//   { id: 4, title: "Commercial E", description: "Commercial E description" },
-//   { id: 5, title: "Commercial F", description: "Commercial E description" },
-// ]
-// export type Commercial = typeof commercial
+export const revalidate = 20
 
 export default async function Navbar() {
   const residential = await prisma.article.findMany({
@@ -34,7 +17,7 @@ export default async function Navbar() {
 
   return (
     <nav className="z-30 flex flex-col">
-      <div className="flex items-center justify-between bg-yellow-400 px-32 py-12 dark:bg-yellow-600">
+      <div className="flex items-center justify-between bg-yellow-400 px-4 py-12 dark:bg-yellow-600 lg:px-32">
         {/* Logo */}
         <Link
           href="/"
@@ -44,7 +27,7 @@ export default async function Navbar() {
         </Link>
 
         {/* Contact links */}
-        <div className="flex flex-col items-center gap-4 text-lg text-black">
+        <div className="flex flex-col items-center gap-4 text-sm text-black lg:text-lg">
           <Link
             href="tel:2345678901"
             className="flex items-center gap-4 font-semibold transition-all hover:scale-95 hover:text-blue-600 hover:underline"
@@ -61,6 +44,7 @@ export default async function Navbar() {
         </div>
       </div>
 
+      <MobileNav residential={residential} commercial={commercial} />
       <Menu residential={residential} commercial={commercial} />
     </nav>
   )

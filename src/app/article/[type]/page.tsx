@@ -37,13 +37,13 @@ export default async function page({
   })
 
   return (
-    <div className="container">
+    <div className="container mx-auto px-4 lg:px-20 lg:pt-8">
       <Header
         title={params.type + "s"}
         description="Read about our blogs and subscribe to our newsletter to receive them via email."
       />
 
-      <div className="grid grid-cols-4 gap-8">
+      <div className="grid gap-8 lg:grid-cols-4">
         {articles.map(article => (
           <div
             className="space-y-4 rounded-xl bg-slate-300 p-6 dark:bg-slate-700"

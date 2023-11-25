@@ -24,7 +24,7 @@ export default function Menu({
   commercial: article[]
 }) {
   return (
-    <div className="flex w-full items-center justify-center gap-6 bg-slate-200 px-32 py-4">
+    <div className="hidden w-full items-center justify-center gap-6 bg-slate-200 px-32 py-4 lg:flex">
       <Link href="/" legacyBehavior passHref>
         <Button
           variant="ghost"
@@ -112,7 +112,7 @@ export default function Menu({
         </Button>
       </Link>
 
-      <Authed />
+      <Authed mobile={false} />
 
       <ModeToggle />
     </div>

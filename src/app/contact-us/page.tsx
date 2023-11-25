@@ -39,13 +39,13 @@ export default async function ContactUs() {
   }
 
   return (
-    <div className="container mx-auto p-8 px-20">
+    <div className="container mx-auto px-4 lg:px-20 lg:pt-8">
       <Header
         title="Contact us today!"
         description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo est
           alias vel, id iusto, molestiae ab ex necessitatibus"
       />
-      <div className="grid grid-cols-2 gap-x-32">
+      <div className="grid gap-x-32 lg:grid-cols-2">
         <form action={handleSubmit} className="space-y-6 p-8">
           <h1 className="border-b-2 border-black pb-2 text-center text-3xl font-bold dark:border-white">
             Get In Touch
