@@ -1,16 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet"
+import { Sheet, SheetContent } from "@/components/ui/sheet"
 import {
   Accordion,
   AccordionContent,
@@ -45,7 +36,7 @@ export function MobileNav({
         >
           <Menu />
         </Button>
-        <ModeToggle className="w-full text-white" />
+        <ModeToggle className="w-full" />
       </div>
       <Sheet open={open} onOpenChange={e => setOpen(e)}>
         <SheetContent side="left" className="bg-yellow-400 dark:bg-yellow-700">

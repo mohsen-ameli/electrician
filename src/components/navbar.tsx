@@ -17,7 +17,7 @@ export default async function Navbar() {
 
   return (
     <nav className="z-30 flex flex-col">
-      <div className="flex items-center justify-between bg-yellow-400 px-4 py-12 dark:bg-yellow-600 lg:px-32">
+      <div className="flex flex-col items-center justify-between gap-4 bg-yellow-400 py-6 dark:bg-yellow-600 sm:flex-row sm:px-32 sm:py-12">
         {/* Logo */}
         <Link
           href="/"
@@ -30,14 +30,14 @@ export default async function Navbar() {
         <div className="flex flex-col items-center gap-4 text-sm text-black lg:text-lg">
           <Link
             href="tel:2345678901"
-            className="flex items-center gap-4 font-semibold transition-all hover:scale-95 hover:text-blue-600 hover:underline"
+            className="flex items-center gap-1 font-semibold transition-all hover:scale-95 hover:text-blue-600 hover:underline lg:gap-4"
           >
             <Phone /> (234) 567-8901
           </Link>
 
           <Link
             href="https://www.instagram.com/hassen.ameli/"
-            className="flex items-center gap-4 font-semibold transition-all hover:scale-95 hover:text-blue-600 hover:underline"
+            className="flex items-center gap-1 font-semibold transition-all hover:scale-95 hover:text-blue-600 hover:underline lg:gap-4"
           >
             <Instagram /> Instagram
           </Link>

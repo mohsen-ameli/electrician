@@ -30,7 +30,7 @@ export default async function page({
 
   return (
     <div className="container mx-auto px-4 pt-4 lg:px-20 lg:pt-8">
-      <div className="rounded-xl bg-slate-300 p-8 dark:bg-slate-700">
+      <div className="rounded-xl bg-slate-300 p-4 dark:bg-slate-700 lg:p-8">
         {article.image && (
           <div className="relative mb-6 h-[400px] w-full">
             <Image
@@ -41,7 +41,12 @@ export default async function page({
             />
           </div>
         )}
-        <h1 className="flex flex-col justify-between gap-4 text-3xl font-semibold lg:flex-row lg:items-center lg:text-5xl">
+        <h1
+          className={
+            (authenticated ? "flex-col" : "flex-row") +
+            " flex justify-between gap-4 text-3xl font-semibold lg:flex-row lg:items-center lg:text-5xl"
+          }
+        >
           {article.title}
           <div className="flex items-center gap-4">
             {authenticated && <DeleteArticle slug={article.slug} />}
