@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation"
 import { useState } from "react"
 import Cookies from "universal-cookie"
 import { login } from "@/lib/login"
+import Header from "@/components/header"
 
 const MAX_AGE = 60 * 60 * 24 * 1
 
@@ -46,11 +47,7 @@ export default function Admin() {
 
   return (
     <div className="container lg:p-8">
-      <h1 className="text-center text-2xl">
-        If you are here, then it can only mean two things. You are the admin, or
-        you are "trying" to become the admin. I hope you are the right person...
-        Otherwise...
-      </h1>
+      <Header title="Admin Login" />
 
       <form
         onSubmit={handleForm}

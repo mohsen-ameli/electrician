@@ -1,7 +1,10 @@
+import { signUp } from "@/lib/create-admin"
 import { NextRequest, NextResponse } from "next/server"
-import prisma from "@/db/prisma-db"
 
 export async function GET(req: NextRequest) {
+  // Use this to create an admin user for testing purposes
+  const admin = await signUp("username", "password", "email@email.com")
+  return NextResponse.json(admin)
   // const blogs = await db.query.blogs.findMany()
   // const { searchParams } = new URL(req.url)
   // const username = searchParams.get("username")
@@ -36,6 +39,5 @@ export async function GET(req: NextRequest) {
   // })
   // await prisma.$executeRaw`DROP TABLE blog;`
   // await addBlog("Hello", "Hello", "shdfsd", "lsjdf")
-
-  return NextResponse.json({})
+  // return NextResponse.json({})
 }

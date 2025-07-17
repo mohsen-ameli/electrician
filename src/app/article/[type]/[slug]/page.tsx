@@ -5,7 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { isAuthenticated } from "@/lib/is-authenticated"
 import DeleteArticle from "./delete-article"
-import ShareButton from "../share"
+import ShareButton from "../share-button"
 import UpdateArticle from "./update-article"
 
 export async function generateStaticParams() {
@@ -17,10 +17,11 @@ export async function generateStaticParams() {
 }
 
 export default async function page({
-  params: { slug },
+  params,
 }: {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }) {
+  const { slug } = await params
   const article = await prisma.article.findUnique({ where: { slug } })
   const authenticated = await isAuthenticated()
 

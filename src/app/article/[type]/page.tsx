@@ -6,7 +6,7 @@ import limitString from "@/lib/limit-string"
 import Link from "next/link"
 import { Metadata } from "next"
 import Image from "next/image"
-import ShareButton from "./share"
+import ShareButton from "./share-button"
 
 export const metadata: Metadata = {
   title: "Echo Power Electric | Articles",
@@ -24,26 +24,27 @@ export async function generateStaticParams() {
 export default async function page({
   params,
 }: {
-  params: {
+  params: Promise<{
     type: articleType
-  }
+  }>
 }) {
-  if (!articlesTypes.includes(params.type)) {
+  const { type } = await params
+  if (!articlesTypes.includes(type)) {
     return <div>404</div>
   }
 
   const articles = await prisma.article.findMany({
-    where: { type: params.type },
+    where: { type: type },
   })
 
   return (
     <div className="container mx-auto px-4 lg:px-20 lg:pt-8">
       <Header
-        title={params.type + "s"}
-        description="Read about our blogs and subscribe to our newsletter to receive them via email."
+        title={type + "s"}
+        // description="Read about our blogs and subscribe to our newsletter to receive them via email."
       />
 
-      <div className="grid gap-8 lg:grid-cols-4">
+      <div className="grid gap-8 lg:grid-cols-3">
         {articles.map(article => (
           <div
             className="space-y-4 rounded-xl bg-slate-300 p-6 dark:bg-slate-700"
@@ -69,7 +70,7 @@ export default async function page({
             </p>
             <p>{limitString(article.content, 20)}</p>
             <div className="mt-4 flex items-center gap-x-4">
-              <Link href={`/article/${params.type}/${article.slug}/`}>
+              <Link href={`/article/${type}/${article.slug}/`}>
                 <Button>Read More</Button>
               </Link>
               <ShareButton title={article.title} />

@@ -15,6 +15,7 @@ import { Button } from "./ui/button"
 import Authed from "./authed"
 import { ModeToggle } from "./theme-toggle"
 import { article } from "@prisma/client"
+import { redirect } from "next/navigation"
 
 export default function Menu({
   residential,
@@ -25,7 +26,7 @@ export default function Menu({
 }) {
   return (
     <div className="hidden w-full items-center justify-center gap-6 bg-slate-200 px-32 py-4 lg:flex">
-      <Link href="/" legacyBehavior passHref>
+      <Link href="/" passHref>
         <Button
           variant="ghost"
           className="text-base font-normal text-black transition-all hover:scale-95"
@@ -37,7 +38,7 @@ export default function Menu({
       <NavigationMenu>
         <NavigationMenuList className="gap-6">
           <NavigationMenuItem>
-            <Link href="/article/residential/">
+            <div onClick={() => redirect("/article/residential/")}>
               <NavigationMenuTrigger>Residential</NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
@@ -52,11 +53,11 @@ export default function Menu({
                   ))}
                 </ul>
               </NavigationMenuContent>
-            </Link>
+            </div>
           </NavigationMenuItem>
 
           <NavigationMenuItem>
-            <Link href="/article/commercial/">
+            <div onClick={() => redirect("/article/commercial/")}>
               <NavigationMenuTrigger>Commercial</NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
@@ -71,12 +72,12 @@ export default function Menu({
                   ))}
                 </ul>
               </NavigationMenuContent>
-            </Link>
+            </div>
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
 
-      <Link href="/about-us">
+      {/* <Link href="/about-us">
         <Button
           variant="ghost"
           className="text-base font-normal text-black transition-all hover:scale-95"
@@ -101,7 +102,7 @@ export default function Menu({
         >
           Contact Us
         </Button>
-      </Link>
+      </Link> */}
 
       <Link href="/article/blog">
         <Button

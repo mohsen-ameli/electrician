@@ -1,16 +1,10 @@
 import { EmailTemplate } from "@/components/email-template"
-import { Clock7, Instagram, Mail, Map, Phone } from "lucide-react"
+import { Clock7, Instagram, Mail, Phone } from "lucide-react"
 import Link from "next/link"
 import React from "react"
 import { Resend } from "resend"
-import SendButton from "../../components/send-button"
+import SendButton from "@/components/send-button"
 import Header from "@/components/header"
-import { Metadata } from "next"
-
-export const metadata: Metadata = {
-  title: "Echo Power Electric | Contact Us",
-  description: "Contact us today and get a free quote.",
-}
 
 export default async function ContactUs() {
   async function handleSubmit(form: FormData) {
@@ -39,15 +33,65 @@ export default async function ContactUs() {
   }
 
   return (
-    <div className="container mx-auto px-4 lg:px-20 lg:pt-8">
-      <Header
-        title="Contact us today!"
-        description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo est
-          alias vel, id iusto, molestiae ab ex necessitatibus"
-      />
-      <div className="grid gap-x-32 lg:grid-cols-2">
+    <div className="container mx-auto px-4 lg:px-20 lg:pt-8" id="contact-us">
+      <Header title="Contact us today!" description="" />
+      <div className="mx-auto w-[75%] space-y-8">
+        <div className="grid grid-cols-2 gap-6 lg:grid-cols-4">
+          <div className="flex flex-col items-center gap-4 rounded-xl bg-amber-400 p-8 text-center text-black">
+            <Clock7 size={70} />
+            <div>
+              <h1 className="mb-2 text-xl font-bold dark:border-white">
+                Work Hours
+              </h1>
+              8:00 AM - 5:00 PM <br /> Monday - Friday
+            </div>
+          </div>
+          <div className="flex flex-col items-center gap-4 rounded-xl bg-amber-400 p-8 text-center text-black">
+            <Phone size={70} />
+            <div>
+              <h1 className="mb-2 text-xl font-bold dark:border-white">
+                Phone Number
+              </h1>
+              <Link
+                href="tel:2345678901"
+                className="underline transition-all hover:text-blue-600"
+              >
+                (234) 567-8901
+              </Link>
+            </div>
+          </div>
+          <div className="flex flex-col items-center gap-4 rounded-xl bg-amber-400 p-8 text-center text-black">
+            <Mail size={70} />
+            <div>
+              <h1 className="mb-2 text-xl font-bold dark:border-white">
+                Email
+              </h1>
+              <Link
+                href="mailto:email@email.com"
+                className="underline transition-all hover:text-blue-600"
+              >
+                email@email.com
+              </Link>
+            </div>
+          </div>
+          <div className="flex flex-col items-center gap-4 rounded-xl bg-amber-400 p-8 text-center text-black">
+            <Instagram size={70} />
+            <div>
+              <h1 className="mb-2 text-xl font-bold dark:border-white">
+                Instagram
+              </h1>
+              <Link
+                href="https://www.instagram.com/hassen.ameli/"
+                className="underline transition-all hover:text-blue-600"
+              >
+                @hassen.ameli
+              </Link>
+            </div>
+          </div>
+        </div>
+
         <form action={handleSubmit} className="space-y-6 p-8">
-          <h1 className="border-b-2 border-black pb-2 text-center text-3xl font-bold dark:border-white">
+          <h1 className="text-center text-3xl font-bold dark:border-white">
             Get In Touch
           </h1>
           <div className="flex flex-col gap-1">
@@ -106,38 +150,6 @@ export default async function ContactUs() {
             doneText="Sent"
           />
         </form>
-
-        <div className="rounded-xl bg-yellow-200 p-8 text-center text-black opacity-70">
-          <h1 className="border-b-2 border-black pb-2 text-3xl font-bold">
-            Contact
-          </h1>
-
-          <div className="mt-8 flex items-center gap-4 text-xl font-semibold">
-            <Clock7 /> Work Hours: 8:00 AM - 5:00 PM (Mon - Fri)
-          </div>
-
-          <Link
-            href="tel:2345678901"
-            className="mt-8 flex items-center gap-4 text-xl font-semibold underline transition-all hover:text-blue-600"
-          >
-            <Phone /> (234) 567-8901
-          </Link>
-
-          <div className="mt-8 flex items-center gap-4 text-xl font-semibold">
-            <Mail /> email@gmail.com
-          </div>
-
-          <Link
-            href="https://www.instagram.com/hassen.ameli/"
-            className="mt-8 flex items-center gap-4 text-xl font-semibold underline transition-all hover:text-blue-600"
-          >
-            <Instagram /> Instagram
-          </Link>
-
-          <div className="mt-8 flex items-center gap-4 text-xl font-semibold">
-            <Map /> Address: 1 Yonge Street, Toronto, ON M5E 1E5
-          </div>
-        </div>
       </div>
 
       <div className="space-y-8 py-20">
