@@ -15,6 +15,24 @@ npm install
 createdb -U user dbname
 ```
 
+Then you have to configure prisma to apply the schema to your newly created db.
+
+```bash
+npx prisma db push
+npx prisma generate
+```
+
+To create an admin user, send a POST request to `http://localhost:3000/api/admin`
+with the following content:
+
+```json
+{
+  "username": "user",
+  "password": "pass",
+  "email": "email@email.com"
+}
+```
+
 4. Generate a new JWT secret token and copy it to `.env`
 
 5. Run
