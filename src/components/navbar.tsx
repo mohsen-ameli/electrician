@@ -1,7 +1,7 @@
 import React from "react"
 import Link from "next/link"
 import Menu from "./menu"
-import prisma from "@/db/prisma-db"
+import prisma from "@/lib/prisma"
 import { Instagram, Phone } from "lucide-react"
 import { MobileNav } from "./mobile-nav"
 

@@ -1,6 +1,6 @@
 "use server"
 
-import prisma from "@/db/prisma-db"
+import prisma from "@/lib/prisma"
 import { compare } from "bcryptjs"
 import { sign } from "jsonwebtoken"
 

@@ -1,6 +1,6 @@
 "use server"
 
-import prisma from "@/db/prisma-db"
+import prisma from "@/lib/prisma"
 import { hash } from "bcryptjs"
 
 export async function signUp(

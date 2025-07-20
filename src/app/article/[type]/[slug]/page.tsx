@@ -1,4 +1,4 @@
-import prisma from "@/db/prisma-db"
+import prisma from "@/lib/prisma"
 import { Button } from "@/components/ui/button"
 import React from "react"
 import Link from "next/link"

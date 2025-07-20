@@ -2,7 +2,7 @@
 
 import { S3 } from "aws-sdk"
 import { redirect } from "next/navigation"
-import prisma from "@/db/prisma-db"
+import prisma from "@/lib/prisma"
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library"
 import { articleType } from "@/lib/types"
 

@@ -1,6 +1,6 @@
 "use server"
 
-import prisma from "@/db/prisma-db"
+import prisma from "@/lib/prisma"
 
 export async function deleteArticle(slug: string) {
   try {

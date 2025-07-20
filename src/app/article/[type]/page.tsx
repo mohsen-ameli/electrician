@@ -1,5 +1,5 @@
 import { articleType } from "@/lib/types"
-import prisma from "@/db/prisma-db"
+import prisma from "@/lib/prisma"
 import Header from "@/components/header"
 import { Button } from "@/components/ui/button"
 import limitString from "@/lib/limit-string"

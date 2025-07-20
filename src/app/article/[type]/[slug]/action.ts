@@ -1,7 +1,7 @@
 "use server"
 
 import { getS3Url, s3Upload } from "../../create/action"
-import prisma from "@/db/prisma-db"
+import prisma from "@/lib/prisma"
 
 export async function updateArticle(formData: FormData) {
   const file = formData.get("image") as File | string

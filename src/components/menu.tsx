@@ -14,8 +14,8 @@ import {
 import { Button } from "./ui/button"
 import Authed from "./authed"
 import { ModeToggle } from "./theme-toggle"
-import { article } from "@prisma/client"
 import { redirect } from "next/navigation"
+import { article } from "../../generated/prisma"
 
 export default function Menu({
   residential,

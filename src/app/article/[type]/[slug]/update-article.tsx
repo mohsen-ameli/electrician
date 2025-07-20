@@ -3,11 +3,11 @@
 import Loading from "@/components/loading"
 import { Button } from "@/components/ui/button"
 import { toast } from "@/components/ui/use-toast"
-import { article } from "@prisma/client"
 import { useRouter } from "next/navigation"
 import { useEffect, useRef, useState } from "react"
 import { updateArticle } from "./action"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { article } from "../../../../../generated/prisma"
 
 export default function UpdateArticle({ article }: { article: article }) {
   const router = useRouter()

@@ -10,12 +10,12 @@ import {
 } from "@/components/ui/accordion"
 
 import { Menu } from "lucide-react"
-import { article } from "@prisma/client"
 import Link from "next/link"
 import { useState } from "react"
 import Authed from "./authed"
 import { ModeToggle } from "./theme-toggle"
 import { ScrollArea } from "./ui/scroll-area"
+import { article } from "../../generated/prisma"
 
 export function MobileNav({
   residential,
