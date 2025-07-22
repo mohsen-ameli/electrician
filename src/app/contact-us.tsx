@@ -5,6 +5,7 @@ import React from "react"
 import { Resend } from "resend"
 import SendButton from "@/components/send-button"
 import Header from "@/components/header"
+import { contact } from "@/contact"
 
 export default async function ContactUs() {
   async function handleSubmit(form: FormData) {
@@ -35,62 +36,62 @@ export default async function ContactUs() {
   return (
     <div className="container mx-auto px-4 lg:px-20 lg:pt-8" id="contact-us">
       <Header title="Contact us today!" description="" />
-      <div className="mx-auto w-[75%] space-y-8">
-        <div className="grid grid-cols-2 gap-6 lg:grid-cols-4">
-          <div className="flex flex-col items-center gap-4 rounded-xl bg-amber-400 p-8 text-center text-black">
-            <Clock7 size={70} />
+      <div className="mx-auto space-y-8 lg:w-[75%]">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="flex flex-col items-center gap-4 rounded-xl bg-amber-400 p-2 text-center text-black lg:p-8">
+            <Clock7 className="size-10 lg:size-16" />
             <div>
-              <h1 className="mb-2 text-xl font-bold dark:border-white">
+              <h1 className="mb-2 font-bold dark:border-white lg:text-xl">
                 Work Hours
               </h1>
               8:00 AM - 5:00 PM <br /> Monday - Friday
             </div>
           </div>
-          <div className="flex flex-col items-center gap-4 rounded-xl bg-amber-400 p-8 text-center text-black">
-            <Phone size={70} />
+          <div className="flex flex-col items-center gap-4 rounded-xl bg-amber-400 p-2 text-center text-black lg:p-8">
+            <Phone className="size-10 lg:size-16" />
             <div>
-              <h1 className="mb-2 text-xl font-bold dark:border-white">
+              <h1 className="mb-2 font-bold dark:border-white lg:text-xl">
                 Phone Number
               </h1>
               <Link
-                href="tel:2345678901"
+                href={`tel:${contact.phone}`}
                 className="underline transition-all hover:text-blue-600"
               >
-                (234) 567-8901
+                {contact.phoneFormatted}
               </Link>
             </div>
           </div>
-          <div className="flex flex-col items-center gap-4 rounded-xl bg-amber-400 p-8 text-center text-black">
-            <Mail size={70} />
+          <div className="flex flex-col items-center gap-4 rounded-xl bg-amber-400 p-2 text-center text-black lg:p-8">
+            <Mail className="size-10 lg:size-16" />
             <div>
-              <h1 className="mb-2 text-xl font-bold dark:border-white">
+              <h1 className="mb-2 font-bold dark:border-white lg:text-xl">
                 Email
               </h1>
               <Link
-                href="mailto:email@email.com"
+                href={`mailto:${contact.email}`}
                 className="underline transition-all hover:text-blue-600"
               >
-                email@email.com
+                {contact.email}
               </Link>
             </div>
           </div>
-          <div className="flex flex-col items-center gap-4 rounded-xl bg-amber-400 p-8 text-center text-black">
-            <Instagram size={70} />
+          <div className="flex flex-col items-center gap-4 rounded-xl bg-amber-400 p-2 text-center text-black lg:p-8">
+            <Instagram className="size-10 lg:size-16" />
             <div>
-              <h1 className="mb-2 text-xl font-bold dark:border-white">
+              <h1 className="mb-2 font-bold dark:border-white lg:text-xl">
                 Instagram
               </h1>
               <Link
-                href="https://www.instagram.com/hassen.ameli/"
+                href={`https://www.instagram.com/${contact.instagram}/`}
                 className="underline transition-all hover:text-blue-600"
               >
-                @hassen.ameli
+                {contact.instagram}
               </Link>
             </div>
           </div>
         </div>
 
-        <form action={handleSubmit} className="space-y-6 p-8">
+        <form action={handleSubmit} className="space-y-6 p-2 lg:p-8">
           <h1 className="text-center text-3xl font-bold dark:border-white">
             Get In Touch
           </h1>
@@ -152,11 +153,13 @@ export default async function ContactUs() {
         </form>
       </div>
 
-      <div className="space-y-8 py-20">
-        {/* <div className="text-center text-3xl">Our Location: 1 yonge street</div> */}
+      <div className="space-y-8 py-20" id="map">
+        <h1 className="text-center text-3xl font-bold dark:border-white">
+          Visit Us
+        </h1>
         <iframe
           className="h-[500px] w-full"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2887.2518157736185!2d-79.37676112432204!3d43.64292895309578!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d4cb295c1d0cf3%3A0x1f29b0772fc15f3!2s1%20Yonge%20St%2C%20Toronto%2C%20ON%20M5E%201E5%2C%20Canada!5e0!3m2!1sen!2sus!4v1699418366873!5m2!1sen!2sus"
+          src={contact.mapUrl}
           allowFullScreen={true}
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"

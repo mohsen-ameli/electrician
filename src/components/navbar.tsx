@@ -4,6 +4,7 @@ import Menu from "./menu"
 import prisma from "@/lib/prisma"
 import { Instagram, Phone } from "lucide-react"
 import { MobileNav } from "./mobile-nav"
+import { contact } from "@/contact"
 
 export const revalidate = 20
 
@@ -29,14 +30,14 @@ export default async function Navbar() {
         {/* Contact links */}
         <div className="flex flex-col items-center gap-4 text-sm text-black lg:text-lg">
           <Link
-            href="tel:2345678901"
+            href={`tel:${contact.phone}`}
             className="flex items-center gap-1 font-semibold transition-all hover:scale-95 hover:text-blue-600 hover:underline lg:gap-4"
           >
-            <Phone /> (234) 567-8901
+            <Phone /> {contact.phoneFormatted}
           </Link>
 
           <Link
-            href="https://www.instagram.com/hassen.ameli/"
+            href={`https://www.instagram.com/${contact.instagram}/`}
             className="flex items-center gap-1 font-semibold transition-all hover:scale-95 hover:text-blue-600 hover:underline lg:gap-4"
           >
             <Instagram /> Instagram

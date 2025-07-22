@@ -1,4 +1,5 @@
-import { Mail, Map, Phone } from "lucide-react"
+import { contact } from "@/contact"
+import { Instagram, Mail, Map, Phone } from "lucide-react"
 import Link from "next/link"
 
 export default function Footer() {
@@ -35,13 +36,40 @@ export default function Footer() {
           </h1>
           <ul className="space-y-4">
             <li className="flex items-center gap-x-4">
-              <Phone /> +1 (647)-394-8541
+              <Phone />
+              <Link
+                href={`tel:${contact.phone}`}
+                className="underline transition-all hover:text-blue-600"
+              >
+                {contact.phoneFormatted}
+              </Link>
             </li>
             <li className="flex items-center gap-x-4">
-              <Mail /> mohsen.ameli83@gmail.com
+              <Mail />
+              <Link
+                href={`mailto:${contact.email}`}
+                className="underline transition-all hover:text-blue-600"
+              >
+                {contact.email}
+              </Link>
             </li>
             <li className="flex items-center gap-x-4">
-              <Map /> 123 Street, City, State, Country
+              <Instagram />
+              <Link
+                href={`https://www.instagram.com/${contact.instagram}/`}
+                className="underline transition-all hover:text-blue-600"
+              >
+                {contact.instagram}
+              </Link>
+            </li>
+            <li className="flex items-center gap-x-4">
+              <Map />
+              <Link
+                href="#map"
+                className="underline transition-all hover:text-blue-600"
+              >
+                {contact.address}
+              </Link>
             </li>
           </ul>
         </div>

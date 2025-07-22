@@ -98,30 +98,6 @@ export function MobileNav({
 
             <Link
               onClick={() => setOpen(false)}
-              href="/about-us"
-              className="flex flex-1 items-center justify-between border-b py-4 font-medium transition-all hover:underline"
-            >
-              About Us
-            </Link>
-
-            <Link
-              onClick={() => setOpen(false)}
-              href="/gallery"
-              className="flex flex-1 items-center justify-between border-b py-4 font-medium transition-all hover:underline"
-            >
-              Gallery
-            </Link>
-
-            <Link
-              onClick={() => setOpen(false)}
-              href="/contact-us"
-              className="flex flex-1 items-center justify-between border-b py-4 font-medium transition-all hover:underline"
-            >
-              Contact Us
-            </Link>
-
-            <Link
-              onClick={() => setOpen(false)}
               href="/article/blog"
               className="flex flex-1 items-center justify-between border-b py-4 font-medium transition-all hover:underline"
             >

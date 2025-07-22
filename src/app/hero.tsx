@@ -20,7 +20,7 @@ export default function Hero() {
               <Link href="#contact-us">
                 <Button
                   variant="outline"
-                  className="w-[25%] text-lg font-semibold"
+                  className="text-lg font-semibold md:w-[25%]"
                 >
                   Contact Us
                 </Button>
