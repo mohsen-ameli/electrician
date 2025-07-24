@@ -1,4 +1,4 @@
-import { contact } from "@/contact"
+import { contact } from "@/constants/contact"
 import { Instagram, Mail, Map, Phone } from "lucide-react"
 import Link from "next/link"
 
@@ -11,9 +11,9 @@ export default function Footer() {
             Echo Power Electric
           </h1>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime
-            omnis iste animi accusamus inventore ea quis quo laudantium cum
-            eaque?
+            Experience top-tier electrical solutions tailored to your needs -
+            from installations to repairs, we're your trusted partner for a
+            brighter, safer, and more efficient future.
           </p>
         </div>
         <div>

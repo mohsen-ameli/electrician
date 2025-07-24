@@ -4,7 +4,7 @@ import Menu from "./menu"
 import prisma from "@/lib/prisma"
 import { Instagram, Phone } from "lucide-react"
 import { MobileNav } from "./mobile-nav"
-import { contact } from "@/contact"
+import { contact } from "@/constants/contact"
 
 export const revalidate = 20
 
